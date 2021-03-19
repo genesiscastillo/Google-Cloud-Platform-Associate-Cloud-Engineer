@@ -33,6 +33,7 @@ It's optimized for that. And it's code first kind of thinking.
 
 ---
 #### 2.2.2 - Using preemptible VMs and custom machine types as appropriate
+- [What is a preemptible instance?](https://cloud.google.com/compute/docs/instances/preemptible)
 * [Command references](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create?hl=es)
 * --preemptible
     > If provided, instances will be preemptible and time-limited. Instances may be preempted to free up resources for standard VM instances, and will only be able to run for a limited amount of time. Preemptible instances can not be restarted and will not migrate.
