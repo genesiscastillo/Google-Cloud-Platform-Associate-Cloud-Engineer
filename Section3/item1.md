@@ -177,10 +177,24 @@ gcloud compute project-info add-metadata \
 ```
 ---
 ### 3.1.4.- Configuring a VM for Stackdriver monitoring and logging
-
-
+- Doc References
+    * [Quickstart for monitoring a Compute Engine instance](https://cloud.google.com/monitoring/quickstart-lamp)
+- Video
+- * [Installing Stackdriver Monitoring Agent on VM Instance](https://www.youtube.com/watch?v=jG-lTxzgC10)
 ---
 ### 3.1.5.- Assessing compute quotas and requesting increases
 
+- Doc References
+* [Resource quotas in Compute Engine](https://cloud.google.com/compute/quotas?hl=es-419)
+* [Increase quota](https://helpcenter.itopia.com/en/articles/2565547-increase-compute-engine-quotas-in-gcp)
+*[How Increase quota](https://www.hex64.net/how-to-increase-quota-of-resources-in-google-cloud-platform/)
+- Video
+* [Setting up cost controls with quota](https://www.youtube.com/watch?v=XpSBBFSBM9g)
 ---
 ### 3.1.6.- Installing the Stackdriver Agent for monitoring and logging
+- Video
+    * [Stackdriver Agent Install](https://www.youtube.com/watch?v=vZNR4wYxHYY)
+
+- Doc References
+    * [Installing the Cloud Monitoring agent on a single VM](https://cloud.google.com/monitoring/agent/installation#agent-install-debian-ubuntu)
+    * [Installing the Cloud Logging agent on a single VM](https://cloud.google.com/logging/docs/agent/installation)
