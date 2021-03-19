@@ -1,4 +1,4 @@
-add notes# 3.-  Deploying and implementing a cloud solution
+# 3.-  Deploying and implementing a cloud solution
 
 ## 3.1.- Deploying and implementing Compute Engine resources
 ---
