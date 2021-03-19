@@ -158,10 +158,35 @@ It's optimized for that. And it's code first kind of thinking.
 ```bash
 gcloud services enabled dns.googleapis.com
 ```
+*Create a virtual machine instance*
+```bash
+gcloud auth login --no-launch-browser
+gcloud config set project sign-in-21-ccf
+gcloud config list
 
+gcloud compute machine-types list
+
+gcloud compute instances create my-instance 
+--machine-type=f1-micro 
+--zome=us-central1-a
+--preemptible 
+--no-restart-on-failure
+--maintenance-policy=terminate
+
+gcloud compute instances list
+
+gcloud compute instances describe my-instance
+
+gcloud compute instances ssh my-instance
+
+sudo apt update && sudo apt -y install apache2
+
+echo '<!doctype html><html><body><h1>Hello World!</h1></body></html>' | sudo tee /var/www/html/index.html
+
+```
 *Create a managed public zone*
 ```bash
-gcloud dns managed-zones create my_zone --dns-name=cesarcastillo.cl  --description="my zone for cesarcastillo.cl" --dnssec-state=off
+gcloud dns managed-zones create my_zone --dns-name=cesarcastillo.cl  --description="my zone for cesarcastillo.cl" --dnssec-state=off --visibility=public
 ```
 
 *The Zone details page*
@@ -170,13 +195,56 @@ gcloud dns managed-zones list
 ```
 
 *Create a record to point the domain to an external IP address*
+```bash
+gcloud dns record-sets transaction start --zone="my-zone"
+  
+gcloud dns record-sets transaction add 10.2.3.4 --name="cesarcastillo.cl" --ttl="5"   --type="A" --zone="my-zone"
 
+gcloud dns record-sets transaction execute --zone="my-zone"
+```
+
+*Create a CNAME record for the www subdomain*
+```bash 
+gcloud dns record-sets transaction add "www.cesarcastillo.cl"--zone="my-zone" --name="*.cesarcastillo.cl" --type=CNAME --ttl=300 
+```
+
+*Mostrar los regitsrol actual*
+```bash
+gcloud dns record-sets list --zone="myzonename"
+```
+
+*Para quitar una transacción*
+```bash
+gcloud dns record-sets transaction remove 10.2.3.4 --name="cesarcastillo.cl" --ttl="5" --type="A"     --zone="my-zone"
+```
+*Removing a record*
+```bash
+gcloud dns record-sets transaction remove 10.2.3.4 --name="cesarcastillo.cl" --ttl="5" --type="A"     --zone="my-zone"
+```
+*deletes an empty Cloud DNS managed-zone*
+```bash
+touch empty-file
+
+gcloud dns record-sets import -z NAME    --delete-all-existing empty-file
+
+rm empty-file
+
+gcloud dns managed-zones delete my-zone
+```
+
+*Stopin VM*
+```bash
+gcloud compute instances stop my-instance
+
+gcloud compute instances delete my-instance --quiet
+```
 
 * Doc References
-    - [Setting up a domain using Cloud DNS](https://cloud.google.com/dns/docs/tutorials/create-domain-tutorial)
     - [Cloud DNS](https://cloud.google.com/dns/docs/overview)
+    - [Setting up a domain using Cloud DNS](https://cloud.google.com/dns/docs/tutorials/create-domain-tutorial)
+    - [Managing records](https://cloud.google.com/dns/docs/records)
     - [Commands gcloud](https://cloud.google.com/sdk/gcloud/reference/dns?hl=es)
 * Video
-    - [How to Configure DNS in Google Cloud](https://www.youtube.com/watch?v=1SxiBYqxwAM)
     - [Administra tus dominios con el servicio de Google Cloud DNS](https://www.youtube.com/watch?v=sw-NhOwOQdI)
+
 ---
