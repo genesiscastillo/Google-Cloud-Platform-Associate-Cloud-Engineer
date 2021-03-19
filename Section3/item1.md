@@ -177,6 +177,40 @@ gcloud compute project-info add-metadata \
 ```
 ---
 ### 3.1.4.- Configuring a VM for Stackdriver monitoring and logging
+
+```bash
+gcloud compute instances create my-instance
+
+gcloud compute ssh my-instance
+
+sudo apt-get update
+
+sudo apt-get install apache2 php7.0
+```
+#### **Install and start the Cloud Monitoring agent**
+```bash
+curl -sSO https://dl.google.com/cloudagents/add-monitoring-agent-repo.sh
+sudo bash add-monitoring-agent-repo.sh
+sudo apt-get update
+
+sudo apt-get install stackdriver-agent
+
+sudo service stackdriver-agent start
+```
+
+#### **Install, configure, and start the Cloud Logging agent**
+```bash
+curl -sSO https://dl.google.com/cloudagents/add-logging-agent-repo.sh
+sudo bash add-logging-agent-repo.sh
+sudo apt-get update
+
+sudo apt-get install google-fluentd
+
+sudo apt-get install google-fluentd-catch-all-config-structured
+
+sudo service google-fluentd start
+```
+
 - Doc References
     * [Quickstart for monitoring a Compute Engine instance](https://cloud.google.com/monitoring/quickstart-lamp)
 - Video
@@ -192,6 +226,7 @@ gcloud compute project-info add-metadata \
 * [Setting up cost controls with quota](https://www.youtube.com/watch?v=XpSBBFSBM9g)
 ---
 ### 3.1.6.- Installing the Stackdriver Agent for monitoring and logging
+
 - Video
     * [Stackdriver Agent Install](https://www.youtube.com/watch?v=vZNR4wYxHYY)
 

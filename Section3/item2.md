@@ -40,6 +40,32 @@ gcloud container clusters delete cluster-name
 ```
 ---
 ### 3.2.3.- Configuring Kubernetes Engine application monitoring and logging
+
+#### **Deploying**
+> To ingest logs, you must deploy the Stackdriver Logging agent to each node in your cluster. The agent is a configured fluentd instance, where the configuration is stored in a ConfigMap and the instances are managed using a Kubernetes DaemonSet. The actual deployment of the ConfigMap and DaemonSet for your cluster depends on your individual cluster setup
+
+#### **Deploying to a new cluster GCP**
+> Stackdriver is the default logging solution for clusters deployed on Google Kubernetes Engine. Stackdriver Logging is deployed to a new cluster by default unless you explicitly opt-out
+
+#### **Configuring Stackdriver Logging Agents**
+> Sometimes the default installation of Stackdriver Logging may not suit your needs, for example:
+* You may want to add more resources because default performance doesn't suit your needs.
+* You may want to introduce additional parsing to extract more metadata from your log messages, like severity or source code reference.
+* You may want to send logs not only to Stackdriver or send it to Stackdriver only partially.
+> To disable the default logging integration, use the following command:
+```bash
+gcloud beta container clusters update --logging-service=none <CLUSTER-NAME>
+```
+
+**Changing DaemonSet parameters**
+> When you have the Stackdriver Logging DaemonSet in your cluster, you can just modify the template field in its spec, daemonset controller will update the pods for you.
+
+```bash
+kubectl get ds fluentd-gcp-v2.0 --namespace kube-system -o yaml > fluentd-gcp-ds.yaml
+
+kubectl replace -f fluentd-gcp-ds.yaml
+```
+
 - Video
     * [Stack Driver Monitoring, Logging and Alerting on Google Cloud Kubernetes Engine](https://www.youtube.com/watch?v=oNEl-H0QWWg)
 
