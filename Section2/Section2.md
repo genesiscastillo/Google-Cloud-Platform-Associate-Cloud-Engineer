@@ -14,6 +14,13 @@
 ---
 ### 2.2.1 - Selecting appropriate compute choices for a given workload
 
+- __Compute Engine__ - **Infrastructure as a Service (IaaS)**: It is a clean virtual machine (a new and an empty server). It’s important to take care of all configurations according to the requirement.
+- __App Engine__ - **Platform as a Service (PaaS)**: It is a fully-managed service where we deploy code to make the application up and running. The maintenance, configuration, scaling, security patches, upgrades, etc. are managed by Google.
+- __Kubernetes Engine__ - Container as a Service (CaaS): It is a container management service and is widely used in microservices to make them lightweight and independent.
+- __Cloud Functions__ - Function as a service (FaaS): It is a fully-managed service. Some functions are executed for a few minutes or seconds. It doesn’t cause any wastage of resources while executing the function; instead, these cloud functions can be executed on the basis of triggers.
+
+![Level of Abstraction](imagen6.jpg)
+
 * Video
     - [Deciding between Compute Engine, Container Engine, App Engine and more](https://www.youtube.com/watch?v=g0dN8Hkh5H8)
 
@@ -47,6 +54,88 @@ It's optimized for that. And it's code first kind of thinking.
         ```bash
         gcloud compute instances create my-vm --zone us-central1-b --preemptible
         ```
+#### **Machine Types**
+- [Machine Types](https://cloud.google.com/compute/docs/machine-types)
+* General-purpose machine types offer the best price-performance ratio for a variety of workloads.
+    - __E2__ machine types are cost-optimized VMs that offer up to 32 vCPUs with up to 128 GB of memory with a maximum of 8 GB per vCPU. E2 machines have a predefined CPU platform running either an Intel or the second generation AMD EPYC Rome processor. E2 VMs provide a variety of compute resources for the lowest price on Compute Engine, especially when paired with committed-use discounts.
+
+        Machine type | Machine name | vCPUs | Memory (GB)
+        --|--|--|--|--
+        standard | e2-standard-2 | 2 | 8
+        high-memory | e2-highmem-2 | 2 | 16
+        high-cpu | e2-highcpu-2 | 2 | 2
+
+    - __N2__ machine types offer up to 80 vCPUs, 8 GB of memory per vCPU, and are available on the Intel Cascade Lake CPU platforms.
+
+        Machine type | Machine name | vCPUs | Memory (GB)
+        --|--|--|--|--
+        standard | n2-standard-2 | 2 | 8
+        high-memory | n2-highmem-2 | 2 | 16
+        high-cpu | n2-highcpu-2 | 2 | 2
+
+    - __N2D__ machine types offer up to 224 vCPUs, 8 GB of memory per vCPU, and are available on second generation AMD EPYC Rome platforms.
+        - Support up to 224 vCPUs and 896 GB of memory
+
+        Machine type | Machine name | vCPUs | Memory (GB)
+        --|--|--|--|--
+        standard | n2d-standard-1 | 2 | 8
+        high-memory | n2d-highmem-2 | 4 | 16
+        high-cpu | n2d-highmem-2 | 2 | 2
+        
+    - __N1__ machine types offer up to 96 vCPUs, 6.5 GB of memory per vCPU, and are available on Intel Sandy Bridge, Ivy Bridge, Haswell, Broadwell, and Skylake CPU platforms.
+
+        Machine type | Machine name | vCPUs | Memory (GB)
+        --|--|--|--|--
+        standard | n1-standard-1 | 1 | 3.75
+        high-memory | n1-highmem-2 | 2 | 13
+        high-cpu | n1-highmem-2 | 2 | 1.80
+
+* __M2 Memory-optimized__ machine types are ideal for memory-intensive workloads because they offer more memory per core than other machine types, with up to 12 TB of memory.
+
+    Machine name | vCPUs | Memory (GB)
+    --|--|--|--
+    m2-ultramem-208 | 208 | 5,888
+    
+* __C2 Compute-optimized__ machine types offer the highest performance per core on Compute Engine and are optimized for compute-intensive workloads. Compute-optimized machine types offer Intel Scalable Processors (Cascade Lake) and up to 3.8 GHz sustained all-core turbo.
+    - You cannot use regional persistent disks with compute-optimized machine types.
+
+    Machine name | vCPUs | Memory (GB)
+    --|--|--|--
+    c2-standard-4 | 4 | 8
+
+* __A2 Accelerator-optimized__ machine types are ideal for massively parallelized CUDA compute workloads, such as machine learning (ML) and high performance computing (HPC).
+
+    Machine name | vCPUs | Memory (GB)
+    --|--|--|--
+    a2-highgpu-1g | 12 | 85
+
+* __Shared-core__ machine types are available in the E2 and N1 families. These machine types timeshare a physical core. This can be a cost-effective method for running small, non-resource intensive applications.
+    - __E2__: e2-micro, e2-small, and e2-medium shared-core machine types have 2 vCPUs available for short periods of bursting.
+
+        Machine name | vCPUs | Fractional vCPUs1 |Memory (GB)
+        --|--|--|--|--
+        e2-micro | 2 | 0.25 | 1
+        e2-small | 2 | 0.5 | 2
+        e2-medium | 2 | 1 | 4
+
+    - __N1__: f1-micro and g1-small shared-core machine types have up to 1 vCPU available for short periods of bursting.
+
+        Machine name | vCPUs | Fractional vCPUs1 |Memory (GB)
+        --|--|--|--|--
+        f1-micro | 1 | 0.2 | 0.60
+        g1-small | 1 | 0.5 | 1.70
+
+```bash
+gcloud compute machine-types list  --filter="zone:( us-central1-a europe-west1-d )"
+```
+**E2 machine types**
+
+**N2 machine types**
+
+**N1 machine types**
+
+**N2D**
+
 
 ---
 ## 2.3.- Planning and configuring data storage options
