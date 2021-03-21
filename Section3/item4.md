@@ -7,8 +7,14 @@
 ### 3.4.1.- Initializing data systems with products
 ---
 #### **Cloud SQL**
+Cloud SQL es una base de datos MySQL ubicada en la nube de Google. Tiene todas las características y funciones de MySQL, además de algunas adicionales (y otras funciones no compatibles).
+
+Google Cloud SQL es un servicio de base de datos totalmente administrado que facilita la configuración, mantenimiento y administración de sus bases de datos relacionales en Google Cloud Platform. Puede usar Cloud SQL con MySQL o PostgreSQL.
+
 - Doc References
     * [Creating a MySQL instance](https://cloud.google.com/sql/docs/mysql/create-instance#create-2nd-gen)
+
+- [Using the Cloud SDK](https://cloud.google.com/sql/docs/mysql/cloud-sdk)
 
 ```bash
 gcloud sql instances create INSTANCE_NAME --cpu=NUMBER_CPUS --memory=MEMORY_SIZE --region=REGION
@@ -17,9 +23,16 @@ gcloud sql users set-password root --host=% --instance INSTANCE_NAME --password 
 ```
 ---
 #### **Cloud Datastore**
+Cloud Datastore es un almacén de datos de NoSQL sin esquema en la nube de Google
+
 - Doc References
 * [Index Configuration](https://cloud.google.com/datastore/docs/tools/indexconfig)
 * [Using the gcloud Tool](https://cloud.google.com/datastore/docs/tools)
+
+<>
+
+- [Using the gcloud Tool to Test Applications and Manage Indexes](https://cloud.google.com/datastore/docs/tools)
+
 
 *index.yaml*
 ```yaml
@@ -75,6 +88,12 @@ datastore.save(entity, (err) => {
 ```
 ---
 #### **Cloud Bigtable**
+
+Cloud Bigtable es una tabla poblada de manera dispersa que puede escalar miles de millones de filas y miles de columnas, lo que te permite almacenar terabytes o, incluso, petabytes de datos. Se indexa solo un valor de cada fila; este es conocido como la clave de fila. Cloud Bigtable es ideal para almacenar cantidades grandes de datos con una sola clave y con una latencia muy baja. Admite una capacidad alta de procesamiento de lectura y escritura con baja latencia, y es la fuente de datos ideal para las operaciones de MapReduce.
+
+- [Quickstart using the cbt tool](https://cloud.google.com/bigtable/docs/quickstart-cbt)
+
+
 ```bash
 export GOOGLE_APPLICATION_CREDENTIALS="[PATH]"
 
@@ -109,18 +128,210 @@ cbt deleteinstance quickstart-instance
 ---
 #### **BigQuery**
 
+BigQuery es el almacén de datos de estadísticas rentable, a escala de petabytes y completamente administrado de Google Cloud que te permite ejecutar estadísticas en grandes cantidades de datos casi en tiempo real. Con BigQuery, no debes configurar ni administrar ninguna infraestructura, lo que te permite enfocarte en encontrar estadísticas significativas mediante SQL estándar y aprovechar los modelos de precios flexibles en las opciones a pedido y de tasa fija
 
+*Allowable types*
+Type Name |	Valid Column Type?|	Valid Key Column Type? |	Valid SQL Type?|	Storage Size
+---|---|---|---|---
+ARRAY	|yes	|no	|yes	|The sum of the size of its elements
+BOOL	|yes	|yes	|yes	|1 byte
+BYTES	|yes	|yes	|yes	|The number of bytes
+DATE	|yes	|yes	|yes	|4 bytes
+FLOAT64	|yes	|yes	|yes	|8 bytes
+INT64	|yes	|yes	|yes	|8 bytes
+NUMERIC	|yes	|no	|yes	|A function of both the precision and scale of the value being stored. The value 0 is stored as 1 byte. The storage size for all other values varies between 6 and 22 bytes.
+STRING	|yes	|yes	|yes	|The number of bytes in its UTF-8 encoding
+STRUCT	|no	|no	|yes	|Not applicable
+TIMESTAMP	|yes	|yes	|yes	|12 bytes
+
+
+*Data type properties*
+Property|	Description|	Applies To
+---|---|---
+Nullable|	NULL is a valid value.	|All data types.
+Orderable|	Can be used in an ORDER BY clause.	|All data types except for:ARRAY STRUCT
+Groupable|	Can generally appear in an expression following GROUP BY and DISTINCT.| All data types except for: ARRAY STRUCT 
+Comparable|	Values of the same type can be compared to each other.	|All data types, with the following exceptions: ARRAY comparisons are not supported.Equality comparisons for STRUCTs are supported field by field, in field order. Field names are ignored. Less than and greater than comparisons are not supported.All types that support comparisons can be used in a JOIN condition. See JOIN Types for an explanation of join conditions.
+
+- [Using the bq command-line tool](https://cloud.google.com/bigquery/docs/bq-command-line-tool)
+
+```bash
+bq show [PROJECT_ID]:[DATASET_ID].[TABLE_ID]
+
+bq show bigquery-public-data:samples.shakespeare
+    Table bigquery-public-data:samples.shakespeare
+```
+       Last modified                  Schema                 Total Rows   Total Bytes   Expiration
+     ----------------- ------------------------------------ ------------ ------------- ------------
+      26 Aug 14:43:49   |- word: string (required)           164656       6432064
+                        |- word_count: integer (required)
+                        |- corpus: string (required)
+                        |- corpus_date: integer (required)
+```bash
+bq query --use_legacy_sql=false \
+'SELECT
+   word,
+   SUM(word_count) AS count
+ FROM
+   `bigquery-public-data`.samples.shakespeare
+ WHERE
+   word LIKE "%raisin%"
+ GROUP BY
+   word'
+```
+    Waiting on job_dcda37c0bbed4c669b04dfd567859b90 ... (0s) Current status:
+    DONE
+    +---------------+-------+
+    |     word      | count |
+    +---------------+-------+
+    | Praising      |   4   |
+    | raising       |   5   |
+    | raisins       |   1   |
+    | praising      |   8   |
+    | dispraising   |   2   |
+    | dispraisingly |   1   |
+    +---------------+-------+
+```bash
+bq ls
+
+bq ls publicdata:
+
+bq mk babynames
+
+bq load babynames.names2010 yob2010.txt name:string,gender:string,count:integer
+```
+Waiting on job_4f0c0878f6184119abfdae05f5194e65 ... (35s) Current status: DONE
+```bash
+bq ls babynames
+```
+    tableId    Type
+ ----------- -------
+  names2010   TABLE
+```bash
+bq show babynames.names2010
+```
+Table myprojectid:babynames.names2010
+
+   Last modified         Schema         Total Rows   Total Bytes   Expiration
+ ----------------- ------------------- ------------ ------------- ------------
+  13 Mar 15:31:00   |- name: string     34041        653855
+                    |- gender: string
+                    |- count: integer
+```bash
+bq rm -r babynames
+```
 ---
 #### **Cloud Spanner**
+Cloud Spanner es un servicio de bases de datos relacionales esencial y completamente administrado que ofrece coherencia en las transacciones a escala global, esquemas, SQL (ANSI 2011 con extensiones) y replicación automática síncrona para brindar una alta disponibilidad.
+
+- [Getting started with Cloud Spanner using gcloud](https://cloud.google.com/spanner/docs/getting-started/gcloud)
+
+```bash
+gcloud spanner --project=PROJECT_ID instance-configs list
+
+gcloud spanner instance-configs list
+
+gcloud spanner instances create my-instance-id  --config=regional-us-east1  --description=my-instance-display-name --nodes=3
+
+gcloud spanner databases create testdb --instance=my-instance-id
+
+gcloud spanner databases create testdb --instance=my-instance-id
+    --ddl='CREATE TABLE mytable (a INT64, b INT64) PRIMARY KEY(a)'
+
+gcloud spanner databases ddl update my-database-id  --instance=my-instance-id
+    --ddl='ALTER TABLE test_table ADD COLUMN a INT64'
+
+gcloud spanner rows insert --table=Singers  --database=my-database --instance=my-instance  --data=SingerId=1,SingerName=abc
+
+gcloud spanner rows insert --table=Singers  --database=my-database --instance=my-instance  --flags-file=path/to/file.yaml
+
+gcloud spanner databases execute-sql example-db \
+    --sql='SELECT SingerId, AlbumId, AlbumTitle FROM Albums'
+
+gcloud spanner operations list --instance=my-instance-id  --type=INSTANCE
+
+gcloud spanner operations list --instance=my-instance-id  --type=BACKUP
+
+gcloud spanner operations list --instance=my-instance-id  --type=DATABASE
+
+gcloud spanner operations list --instance=my-instance-id  --database=my-database-id --type=DATABASE
+
+gcloud spanner operations list --instance=my-instance-id  --database=my-database-id --type=BACKUP
+
+gcloud spanner operations list --instance=my-instance-id  --backup=my-backup-id --type=BACKUP
+
+gcloud spanner databases delete example-db
+
+gcloud spanner instances delete test-instance
+```
 
 ---
 #### **Cloud Pub/Sub**
+Pub/Sub is an asynchronous messaging service that decouples services that produce events from services that process events.
 
+- [Quickstart using the gcloud command-line tool](https://cloud.google.com/pubsub/docs/quickstart-cli)
+
+```bash
+gcloud pubsub topics create my-topic
+
+gcloud pubsub subscriptions create my-sub --topic=my-topic
+
+gcloud pubsub topics publish my-topic --message="hello"
+
+gcloud pubsub subscriptions pull my-sub --auto-ack
+```
 ---
 #### **Cloud Dataproc**
+Dataproc es un servicio administrado de Spark y Hadoop con el que puede aprovechar herramientas de datos de código abierto para procesamientos por lotes, búsquedas, transmisiones y aprendizaje automático.
 
+- [Quickstart using the gcloud command-line tool](https://cloud.google.com/dataproc/docs/quickstarts/quickstart-gcloud)
+
+```bash
+gcloud dataproc clusters create example-cluster --region=region
+
+gcloud dataproc jobs submit spark --cluster example-cluster \
+    --region=region \
+    --class org.apache.spark.examples.SparkPi \
+    --jars file:///usr/lib/spark/examples/jars/spark-examples.jar -- 1000
+
+gcloud dataproc clusters update example-cluster \
+    --region=region \
+    --num-workers 5
+
+gcloud dataproc clusters delete example-cluster \
+    --region=region
+```
 ---
 #### **Cloud Storage**
+Cloud Storage es un servicio para almacenar tus objetos en Google Cloud. Un objeto es un dato inmutable que consta de un archivo de cualquier formato. Los objetos se almacenan en contenedores llamados depósitos
+
+- [Usa la herramienta de gsutil](https://cloud.google.com/storage/docs/quickstart-gsutil)
+
+```bash
+gsutil mb -b on -l us-east1 gs://my-awesome-bucket/
+
+gsutil cp Desktop/kitten.png gs://my-awesome-bucket
+
+gsutil cp gs://my-awesome-bucket/kitten.png Desktop/kitten2.png
+
+gsutil cp gs://my-awesome-bucket/kitten.png gs://my-awesome-bucket/just-a-folder/kitten3.png
+
+gsutil ls gs://my-awesome-bucket
+
+gsutil ls -l gs://my-awesome-bucket/kitten.png
+
+gsutil iam ch allUsers:objectViewer gs://my-awesome-bucket
+
+gsutil iam ch -d allUsers:objectViewer gs://my-awesome-bucket
+
+gsutil iam ch user:jane@gmail.com:objectCreator,objectViewer gs://my-awesome-bucket
+
+gsutil iam ch -d user:jane@gmail.com:objectCreator,objectViewer gs://my-awesome-bucket
+
+gsutil rm gs://my-awesome-bucket/kitten.png
+
+gsutil rm -r gs://my-awesome-bucket
+```
 
 ---
 ### 3.4.2.- Loading data
