@@ -16,6 +16,7 @@ gcloud compute scp local-file-path instance-name:~
 
 gcloud compute scp --recurse instance-name:remote-dir local-dir
 ```
+---
 #### API transfer
 What is Storage Transfer Service?
 Storage Transfer Service is a product that enables you to:
@@ -34,7 +35,7 @@ Storage Transfer Service does the following by default:
 - Retains files in the source after the transfer operation.
 - Uses TLS encryption for HTTPs connections. The only exception is if you specify an HTTP URL for a URL list transfer.
 
-
+---
 #### Import / export
 
 - Exporting and Importing Entities (Datastore)
@@ -46,14 +47,14 @@ Storage Transfer Service does the following by default:
     ```bash
     gcloud datastore import gs://bucket-name/file-path/file-name.overall_export_metadata --async
     ```
-
+---
 #### load data from Cloud Storage
 - Upload your existing MySQL database to Google Cloud Storage
 ```script
 mysqldump --databases database_name [-h instance-ip -u username -p password] \
 --hex-blob --default-character-set=utf8 > database_file.sql
 ```
-
+----
 #### streaming data to Cloud Pub/Sub
 
 The following streaming templates export Pub/Sub data to different destinations:
@@ -113,5 +114,4 @@ gcloud dataflow jobs show 2020-07-07_12_28_18-12115131109562943692 --region=us-c
 gcloud dataflow sql query "SELECT first_name FROM bigquery.table.`fal-retail-dtlk-uat`.guille.test_json where last_name='Doe'" --job-name=my-job --region=us-central1 --bigquery-dataset=guille --bigquery-table=my_output_table
 
 gcloud beta dataflow logs list JOB_ID --region=us-central1
-
 ```
