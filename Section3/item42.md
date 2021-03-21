@@ -83,8 +83,8 @@ mvn compile exec:java \
     - Requirements for this pipeline:
 
         * Input files must be in newline-delimited JSON or CSV format. Records that span multiple lines in the source files can cause issues downstream, as each line within the files will be published as a message to Pub/Sub.
-            * The Pub/Sub topic must exist prior to execution.
-            * The pipeline runs indefinitely and needs to be terminated manually.
+        * The Pub/Sub topic must exist prior to execution.
+        * The pipeline runs indefinitely and needs to be terminated manually.
 
 
 ```bash
