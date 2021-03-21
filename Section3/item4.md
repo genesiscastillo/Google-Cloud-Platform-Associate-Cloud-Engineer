@@ -5,6 +5,7 @@
 ## 3.4.- Deploying and implementing data solutions
 
 ### 3.4.1.- Initializing data systems with products
+---
 #### **Cloud SQL**
 - Doc References
     * [Creating a MySQL instance](https://cloud.google.com/sql/docs/mysql/create-instance#create-2nd-gen)
@@ -14,7 +15,7 @@ gcloud sql instances create INSTANCE_NAME --cpu=NUMBER_CPUS --memory=MEMORY_SIZE
 
 gcloud sql users set-password root --host=% --instance INSTANCE_NAME --password PASSWORD
 ```
-
+---
 #### **Cloud Datastore**
 - Doc References
 * [Index Configuration](https://cloud.google.com/datastore/docs/tools/indexconfig)
@@ -72,7 +73,7 @@ datastore.save(entity, (err) => {
     }
 });
 ```
-
+---
 #### **Cloud Bigtable**
 ```bash
 export GOOGLE_APPLICATION_CREDENTIALS="[PATH]"
@@ -105,18 +106,23 @@ cbt deletetable my-table
 
 cbt deleteinstance quickstart-instance
 ```
+---
 #### **BigQuery**
 
 
-
+---
 #### **Cloud Spanner**
 
+---
 #### **Cloud Pub/Sub**
 
+---
 #### **Cloud Dataproc**
 
+---
 #### **Cloud Storage**
 
+---
 ### 3.4.2.- Loading data
 - Command line upload
 - API transfer
