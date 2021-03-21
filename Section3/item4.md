@@ -332,12 +332,3 @@ gsutil rm gs://my-awesome-bucket/kitten.png
 
 gsutil rm -r gs://my-awesome-bucket
 ```
-
----
-### 3.4.2.- Loading data
-- Command line upload
-- API transfer
-- Import / export
-- load data from Cloud Storage
-- streaming data to Cloud Pub/Sub
-
