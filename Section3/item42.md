@@ -5,7 +5,7 @@
 ## 3.4.- Deploying and implementing data solutions
 
 ### 3.4.2.- Loading data
-#### Command line upload
+#### **Command line upload**
 - Cloud Storage
 ```bash
     gsutil cp OBJECT_LOCATION gs://DESTINATION_BUCKET_NAME/
@@ -17,7 +17,7 @@ gcloud compute scp local-file-path instance-name:~
 gcloud compute scp --recurse instance-name:remote-dir local-dir
 ```
 ---
-#### API transfer
+#### **API transfer**
 What is Storage Transfer Service?
 Storage Transfer Service is a product that enables you to:
 - Move or backup data to a Cloud Storage bucket either from other cloud storage providers or from your on-premises storage.
@@ -36,7 +36,7 @@ Storage Transfer Service does the following by default:
 - Uses TLS encryption for HTTPs connections. The only exception is if you specify an HTTP URL for a URL list transfer.
 
 ---
-#### Import / export
+#### **Import / export**
 
 - Exporting and Importing Entities (Datastore)
     * Exporting all entities
@@ -48,14 +48,16 @@ Storage Transfer Service does the following by default:
     gcloud datastore import gs://bucket-name/file-path/file-name.overall_export_metadata --async
     ```
 ---
-#### load data from Cloud Storage
-- Upload your existing MySQL database to Google Cloud Storage
-```script
-mysqldump --databases database_name [-h instance-ip -u username -p password] \
---hex-blob --default-character-set=utf8 > database_file.sql
+#### **load data from Cloud Storage**
+* to BigQuery
+```bash
+gcloud functions deploy streaming --region=${REGION} \
+    --source=./functions/streaming --runtime=python37 \
+    --stage-bucket=${FUNCTIONS_BUCKET} \
+    --trigger-bucket=${FILES_SOURCE}
 ```
-----
-#### streaming data to Cloud Pub/Sub
+---
+#### **streaming data to Cloud Pub/Sub**
 
 The following streaming templates export Pub/Sub data to different destinations:
 - Pub/Sub Subscription to BigQuery
