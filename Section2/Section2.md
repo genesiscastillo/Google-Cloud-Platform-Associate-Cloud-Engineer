@@ -178,7 +178,7 @@ gcloud compute machine-types list  --filter="zone:( us-central1-a europe-west1-d
     - [What is Cloud Spanner](https://www.youtube.com/watch?v=bUSU1e9j8wc)
 
 * Table
-- ![Test Image 3](imagen3.PNG)
+- ![Test Image 3](Imagen3.PNG)
 
 #### 2.3.1.4.- Cloud Bigtable
     A fully managed, scalable NoSQL database service for large analytical and operational workloads
