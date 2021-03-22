@@ -52,24 +52,24 @@ La administración de red para cada red de intercambio de tráfico es la misma: 
 - Video2 - [Creating VPC and Subnets using gcloud CLI](https://www.youtube.com/watch?v=5pGm_ZDirBU)
 
 #### **Custom-mode VPC**
-- Creating an auto mode 
+* Creating an auto mode 
     ```bash
     gcloud compute networks create NETWORK \
         --subnet-mode=auto \
         --bgp-routing-mode=DYNAMIC_ROUTING_MODE \
         --mtu=MTU
     ```
-- Creating a custom mode network
-    ```bash
+* Creating a custom mode network
+```bash
     gcloud compute networks create NETWORK \
         --subnet-mode=custom \
         --bgp-routing-mode=DYNAMIC_ROUTING_MODE \
         --mtu=MTU
-    ```
-- Viewing networks
-    ```bash
+```
+* Viewing networks
+```bash
     gcloud compute networks list
-    ```
+```
 NAME| SUBNET_MODE| BGP_ROUTING_MODE|IPV4_RANGE| GATEWAY_IPV4
 ---|---|---|---|---
 custom-network   |CUSTOM       |REGIONAL| |
@@ -80,6 +80,20 @@ legacy-network1  |LEGACY       |REGIONAL|         10.240.0.0/16|  10.240.0.1
     gcloud compute networks describe NETWORK
 ```
 - Working with subnets
+    * Doc Ref : [Understanding CIDRs and Public vs Private IPs](https://dzone.com/articles/understanding-cidrs-classless-inter-domain-routing)
+
+    * ![cidr](cidr_subnets.png)
+        - Calculation Details for 192.134.0.0/29
+            * CIDR: 192.134.0.0/29
+            * IPs in Range: 8 ( 2^ 32-29 = 2^ 3 =8)
+            * Mask Bits:  29
+            * CIDR IP Range: (192.134.0.0 - 192.134.0.7 )  i.e, 192.134.0.0,192.134.0.1,192.134.0.2,192.134.0.3,192.134.0.4,192.134.0.5,192.134.0.6,192.134.0.7, total of 8 IPs
+            * Mask Bits: 29
+            * Note: In Base IP, for IPv4 , we have a notation like w.x.y.z , 4 sections; each sections for eg: "w" can vary from 0 to 255 , likewise:
+                - So the base IP is usually between the range of 0.0.0.0 to 255.255.255.255 (IPv4 range). Use this website here to calculate the CIDR range.
+    * Private and Public range
+        ![priv_pub_ip_range](priv_pub_ip_range.png)
+
 ```bash
 gcloud compute networks subnets list
 
@@ -93,12 +107,10 @@ gcloud compute networks subnets create SUBNET \
     --network=NETWORK \
     --range=PRIMARY_RANGE \
     --region=REGION
-
 gcloud compute networks subnets delete SUBNET --region=REGION
-
-
+```
 > When creating a new subnet, use the --enable-private-ip-google-access flag to enable Private Google Access
-
+```bash
     gcloud compute networks subnets create SUBNET_NAME \
     --region=REGION \
     --network=NETWORK_NAME \
