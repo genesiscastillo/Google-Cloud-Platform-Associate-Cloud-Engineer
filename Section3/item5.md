@@ -95,6 +95,15 @@ gcloud compute networks subnets create SUBNET \
     --region=REGION
 
 gcloud compute networks subnets delete SUBNET --region=REGION
+
+
+> When creating a new subnet, use the --enable-private-ip-google-access flag to enable Private Google Access
+
+    gcloud compute networks subnets create SUBNET_NAME \
+    --region=REGION \
+    --network=NETWORK_NAME \
+    --range=PRIMARY_IP_RANGE \
+    --enable-private-ip-google-access
 ```
 * Expanding a primary IP range
 ```bash
