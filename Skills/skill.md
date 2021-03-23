@@ -90,3 +90,9 @@ Experiencia Tecnicas:
 - Experiencia en CI/CD: Jenkins, Gitlab, Sonar.
 
 - Deseable Certificado en Scrum Foundation Professional Certificate (SFPC) (2021).
+
+
+### Otros conceptos
+
+Yaml.- Es un formato de serialización de datos legible por humanos.
+

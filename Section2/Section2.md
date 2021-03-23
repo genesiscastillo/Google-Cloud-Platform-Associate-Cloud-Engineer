@@ -16,8 +16,8 @@
 
 - __Compute Engine__ - **Infrastructure as a Service (IaaS)**: It is a clean virtual machine (a new and an empty server). It’s important to take care of all configurations according to the requirement.
 - __App Engine__ - **Platform as a Service (PaaS)**: It is a fully-managed service where we deploy code to make the application up and running. The maintenance, configuration, scaling, security patches, upgrades, etc. are managed by Google.
-- __Kubernetes Engine__ - Container as a Service (CaaS): It is a container management service and is widely used in microservices to make them lightweight and independent.
-- __Cloud Functions__ - Function as a service (FaaS): It is a fully-managed service. Some functions are executed for a few minutes or seconds. It doesn’t cause any wastage of resources while executing the function; instead, these cloud functions can be executed on the basis of triggers.
+- __Kubernetes Engine__ - **Container as a Service (CaaS)**: It is a container management service and is widely used in microservices to make them lightweight and independent.
+- __Cloud Functions__ - **Function as a service (FaaS)**: It is a fully-managed service. Some functions are executed for a few minutes or seconds. It doesn’t cause any wastage of resources while executing the function; instead, these cloud functions can be executed on the basis of triggers.
 
 ![Level of Abstraction](imagen6.jpg)
 

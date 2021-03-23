@@ -141,6 +141,9 @@ gcloud functions logs read --limit 50
 gcloud functions delete helloPubSub 
 ```
 
+- PLUS [operations are implemented in corresponding files and are mapped to HTTP verbs](https://github.com/GoogleCloudPlatform/deploymentmanager-samples/tree/master/google/resource-snippets/functions-backed-type/function)
+
+
 #### Cloud Storage object change notification events
 
 ```javascript
