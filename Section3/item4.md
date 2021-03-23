@@ -11,6 +11,10 @@ Cloud SQL es una base de datos MySQL ubicada en la nube de Google. Tiene todas l
 
 Google Cloud SQL es un servicio de base de datos totalmente administrado que facilita la configuración, mantenimiento y administración de sus bases de datos relacionales en Google Cloud Platform. Puede usar Cloud SQL con MySQL o PostgreSQL.
 
+*By default Cloud SQL retains 7 days of automated backups, plus all on-demand backups, for an instance*
+*CloudSQL only stores last 7 automated backups and this setting cannot be changed as of writing this question.*
+
+
 - Doc References
     * [Creating a MySQL instance](https://cloud.google.com/sql/docs/mysql/create-instance#create-2nd-gen)
 
@@ -264,6 +268,19 @@ gcloud spanner databases delete example-db
 
 gcloud spanner instances delete test-instance
 ```
+__What's the difference between Google Cloud Spanner and Cloud SQL?__
+
+There is not a big difference between then in terms on what they do (storing data in tables). The difference is how they handle the data in a small and big scale
+
+Cloud Spanner is used when you need to handle massive amounts of data with an elevated level of consistency and with a big amount of data handling (+100,000 reads/write per second). Spanner gives much better scalability and better SLOs.
+
+On the other hand, Spanner is also much more expensive than Cloud SQL.
+
+If you just want to store some data of your customer in a cheap way but still don't want to face server configuration Cloud SQL is the right choice.
+
+If you are planning to create a big product or if you want to be ready for a huge increase in users for your application (viral games/applications) Spanner is the right product.
+
+You can find detailed information about Cloud Spanner in this official paper
 
 ---
 #### **Cloud Pub/Sub**
