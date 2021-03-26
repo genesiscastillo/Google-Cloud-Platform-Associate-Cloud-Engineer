@@ -147,6 +147,17 @@ gcloud compute machine-types list  --filter="zone:( us-central1-a europe-west1-d
 
     - ![Test Image 1](imagen1.png)
 
+Storage options
+Compute Engine offers several types of storage options for your instances. Each of the following storage options has unique price and performance characteristics:
+
+Zonal persistent disk: Efficient, reliable block storage.
+Regional persistent disk: Regional block storage replicated in two zones.
+Local SSD: High performance, transient, local block storage.
+Cloud Storage buckets: Affordable object storage.
+Filestore: High performance file storage for Google Cloud users.
+
+
+
 ### 2.3.1.- Product choice
 
 #### 2.3.1.1.- Cloud SQL

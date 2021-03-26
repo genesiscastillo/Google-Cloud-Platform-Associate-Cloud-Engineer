@@ -1,6 +1,6 @@
 # Java SE 11 Developer Exam Number: 1Z0-819
 
-- [Obejctives](https://education.oracle.com/es/cat%C3%A1logo-de-productos-ouexam-pexam_1z0-819/pexam_1Z0-819)
+- [Objetives](https://education.oracle.com/es/cat%C3%A1logo-de-productos-ouexam-pexam_1z0-819/pexam_1Z0-819)
 
 ## Working with Java data types
 

@@ -25,6 +25,11 @@ gcloud sql instances create INSTANCE_NAME --cpu=NUMBER_CPUS --memory=MEMORY_SIZE
 
 gcloud sql users set-password root --host=% --instance INSTANCE_NAME --password PASSWORD
 ```
+
+**Legacy MySQL high availability option**
+
+Until Q1 2021, you have the option of using the legacy process for adding high availability to MySQL instances, which uses a **failover replica**
+
 ---
 #### **Cloud Datastore**
 Cloud Datastore es un almacén de datos de NoSQL sin esquema en la nube de Google
@@ -395,3 +400,4 @@ gsutil rm gs://my-awesome-bucket/kitten.png
 
 gsutil rm -r gs://my-awesome-bucket
 ```
+
