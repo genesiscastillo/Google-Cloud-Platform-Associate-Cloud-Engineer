@@ -224,6 +224,52 @@ Table myprojectid:babynames.names2010
 ```bash
 bq rm -r babynames
 ```
+
+*dry-run*
+
+Cuando ejecutas una consulta en la herramienta de línea de comandos de bq, puedes usar la marca --dry_run para estimar la cantidad de bytes que lee la consulta. También puedes usar el parámetro dryRun cuando envíes un trabajo de consulta mediante la API o las bibliotecas cliente.
+
+Puedes usar la estimación que muestra la ejecución de prueba para calcular los costos de consulta en la calculadora de precios. No se te cobrará por realizar la ejecución de prueba.
+```bash
+bq query \
+--use_legacy_sql=false \
+--dry_run \
+'SELECT
+   COUNTRY,
+   AIRPORT,
+   IATA
+ FROM
+   `project_id`.dataset.airports
+ LIMIT
+   1000'
+ ```
+**other commands**
+
+Any of the following commands:
+
+- add-iam-policy-binding
+- cancel,
+- cp
+- extract
+- get-iam-policy
+- head
+- help
+- init
+- insert
+- load
+- ls
+- mk
+- mkdef
+- partition
+- query
+- remove-iam-policy-binding
+- rm
+- set-iam-policy
+- shell
+- show
+- update
+- version
+- wait
 ---
 #### **Cloud Spanner**
 Cloud Spanner es un servicio de bases de datos relacionales esencial y completamente administrado que ofrece coherencia en las transacciones a escala global, esquemas, SQL (ANSI 2011 con extensiones) y replicación automática síncrona para brindar una alta disponibilidad.

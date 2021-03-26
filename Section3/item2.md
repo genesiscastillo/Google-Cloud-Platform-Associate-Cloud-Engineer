@@ -73,3 +73,14 @@ kubectl replace -f fluentd-gcp-ds.yaml
     * [Logging StackDriver](https://kubernetes.io/docs/tasks/debug-application-cluster/logging-stackdriver/)
     * [Monitoring Kubernetes Clusters on GKE](https://medium.com/google-cloud/gke-monitoring-84170ea44833)
 
+
+**Autoscaling limits**
+
+The total **size of this cluster is between three and twelve nodes**, spread across three zones. If one of the zones fails, the total size of cluster becomes between two and eight nodes.
+
+```bash
+gcloud container clusters create example-cluster \
+  --zone us-central1-a \
+  --node-locations us-central1-a,us-central1-b,us-central1-f \
+  --num-nodes 2 --enable-autoscaling --min-nodes 1 --max-nodes 4
+```
