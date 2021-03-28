@@ -66,5 +66,5 @@ https://docs.google.com/document/d/1u6pXBiGMYj7ZLBN21x6jap11rG6gWk7n210hNnUzrkI/
 ### other resources
 
 - [gcloud_cheat_sheet.md](https://gist.github.com/pydevops/cffbd3c694d599c6ca18342d3625af97)
-- 
+- [How to ace the Google Cloud Associate Cloud Engineer Certification Exam!](https://medium.com/weareservian/ace-the-google-cloud-associate-cloud-engineer-certification-exam-8f3fdea87fb5)
 

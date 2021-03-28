@@ -400,4 +400,51 @@ gsutil rm gs://my-awesome-bucket/kitten.png
 
 gsutil rm -r gs://my-awesome-bucket
 ```
+**Bucket name requirements**
+Your bucket names must meet the following requirements:
 
+    - Bucket names must contain only lowercase letters, numbers, dashes (-), underscores (_), and dots (.). Spaces are not allowed. Names containing dots require verification.
+    - Bucket names must start and end with a number or letter.
+    - Bucket names must contain 3-63 characters. Names containing dots can contain up to 222 characters, but each dot-separated component can be no longer than 63 characters.
+    - Bucket names cannot be represented as an IP address in dotted-decimal notation (for example, 192.168.5.4).
+    - Bucket names cannot begin with the "goog" prefix.
+    - Bucket names cannot contain "google" or close misspellings, such as "g00gle".
+
+**Bucket name considerations**
+- Bucket names reside in a single Cloud Storage namespace.
+
+This means that:
+
+    - Every bucket name must be unique.
+    - Bucket names are publicly visible
+
+> If you try to create a bucket with a name that already belongs to an existing bucket, Cloud Storage responds with an error message.
+
+- A bucket name can only be assigned during creation.
+
+> You cannot change the name of an existing bucket. Instead, you should create a new bucket with the desired name and move the contents from the old bucket to the new bucket. See Moving and Renaming Buckets for a step-by-step guide.
+
+- Once you delete a bucket, anyone can reuse its name for a new bucket.
+
+> The time it takes a deleted bucket's name to become available again is typically on the order of seconds; however, if you delete the project that contains the bucket, which effectively deletes the bucket as well, the bucket name may not be released for weeks or longer.
+
+- You can use a bucket name in a DNS record as part of a CNAME or A redirect.
+
+> In order to do so, your bucket name should conform to standard DNS naming conventions. This means that your bucket name should not use underscores (_) or have a period next to another period or dash. For example, ".." is not valid within DNS names and neither is "-." or ".-".
+
+**Bucket locations**
+Regions
+    - US-CENTRAL1
+    - SOUTHAMERICA-EAST1
+    - EUROPE-CENTRAL2
+    - ASIA-EAST1
+
+Multi-regions
+    - ASIA
+    - EU
+    - US
+
+Dual-regions
+    - ASIA1
+    - EUR4
+    - NAM4
