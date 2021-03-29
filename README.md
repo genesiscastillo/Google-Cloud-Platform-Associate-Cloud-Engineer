@@ -6,7 +6,7 @@
 
 1.- Setting up a cloud solution environment
 
-* 1.1.- [Setting up cloud projects and accounts](https://github.com/genesiscastillo/Google-Cloud-Platform-Associate-Cloud-Engineer/blob/master/Section1/SubSection1/SubSection1.md)
+* 1.1.- Setting up cloud projects and accounts
 
     - 1.1.1.- [Creating projects](https://github.com/genesiscastillo/Google-Cloud-Platform-Associate-Cloud-Engineer/blob/master/Section1/SubSection1/Item1.md)
 
