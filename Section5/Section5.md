@@ -1,5 +1,7 @@
 # 5.- Configuring access and security
 
+> PENDIENTE
+
 ## 5.1.- Managing Identity and Access Management (IAM)
 ---
 ### 5.1.1.- Viewing account IAM assignments

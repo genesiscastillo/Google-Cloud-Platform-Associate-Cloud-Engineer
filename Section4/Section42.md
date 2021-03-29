@@ -1,7 +1,6 @@
 # 4.- Ensuring successful operation of a cloud solution
-## 4.1.- Managing Compute Engine resources
-
 ## 4.2.- Managing Kubernetes Engine resources
+---
 ### 4.2.1.- Viewing current running cluster inventory
 **nodes**
 kubectl get nodes
@@ -12,6 +11,7 @@ kubectl get services
 
 ### 4.2.2.- Browsing the container image repository and viewing container image details
 
+> PENDIENTE AGREAGR IMAGEN
 
 ### 4.2.3.- Working with nodes
 Resize an existing cluster to a provided size.
