@@ -2,8 +2,6 @@
 
 # Cesar Castillo
 
-https://docs.google.com/document/d/1u6pXBiGMYj7ZLBN21x6jap11rG6gWk7n210hNnUzrkI/edit#heading=h.jy06q7wsfii
-
 ## Temario
 
 1.- Setting up a cloud solution environment
