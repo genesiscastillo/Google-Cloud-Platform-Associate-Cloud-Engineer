@@ -6,7 +6,17 @@
 
 1.- Setting up a cloud solution environment
 
-* 1.1.- Setting up cloud projects and accounts
+* 1.1.- [Setting up cloud projects and accounts](https://github.com/genesiscastillo/Google-Cloud-Platform-Associate-Cloud-Engineer/blob/master/Section1/SubSection1/SubSection1.md)
+
+    - 1.1.1.- [Creating projects](https://github.com/genesiscastillo/Google-Cloud-Platform-Associate-Cloud-Engineer/blob/master/Section1/SubSection1/Item1.md)
+
+    - 1.1.2.- [Assigning users to pre-defined IAM roles within a project](https://github.com/genesiscastillo/Google-Cloud-Platform-Associate-Cloud-Engineer/blob/master/Section1/SubSection1/Item2.md)
+
+    - 1.1.3.- [Linking users to G Suite identities](https://github.com/genesiscastillo/Google-Cloud-Platform-Associate-Cloud-Engineer/blob/master/Section1/SubSection1/Item3.md)
+
+    - 1.1.4.- [Enabling APIs within projects](https://github.com/genesiscastillo/Google-Cloud-Platform-Associate-Cloud-Engineer/blob/master/Section1/SubSection1/Item4.md)
+
+    - 1.1.5.- [Provisioning one or more Stackdriver accounts](https://github.com/genesiscastillo/Google-Cloud-Platform-Associate-Cloud-Engineer/blob/master/Section1/SubSection1/Item5.md)
 
 * 1.2.- Managing billing configuration
 
