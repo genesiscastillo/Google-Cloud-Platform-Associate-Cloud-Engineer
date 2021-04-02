@@ -19,6 +19,33 @@ Las Redes VPC es como una **red física que se virtualiza** dentro de Google Clo
 Cada red de VPC implementa un firewall virtual distribuido que puedes configurar. Las reglas de firewall te permiten controlar qué paquetes pueden trasladarse a qué destinos. Cada red de VPC tiene dos reglas de firewall implícitas que bloquean todas las conexiones entrantes y permiten todas las conexiones salientes.
 
 La red default tiene reglas de firewall adicionales, incluida la regla default-allow-internal, que permiten la comunicación entre las instancias de la red.
+##### what is Firewall rules?
+- Firewall rules allow you too permit incoming (INGRESS) and outgoing (EGRESS) traffic to/from your VM instances
+- They are specif to a VPC network
+- Each rule either allows or denies traffic when its conditions are met.
+    * type of traffic (Port and protocols)
+    * Source
+    * Destination
+- Forewall ruels only support IPv4 Traffic
+- There is no logging mechanism for firewall rules.
+- GCP firewall rules are stateful.
+- Lower the priority number, higher the priority.
+- Conflicting rules with lower priorities are ignores.
+
+##### what is Firewall rules made of ?
+- A numercial priority
+- the direction traffic
+    * ingress
+    * egress
+- Action on match
+    * allow
+    * deny
+- target
+- Source
+- Protocol
+- Enforcement status
+
+[Demo Firewall rules](https://www.youtube.com/watch?v=F1pWN3Lk7og)
 
 #### Routes
 Las rutas indican a las instancias de VM y a la red de VPC cómo enviar el tráfico de una instancia a un destino, ya sea dentro de la red o fuera de Google Cloud. Las redes de VPC incluyen algunas rutas generadas por el sistema para enrutar el tráfico entre sus subredes y enviarlo de las instancias aptas a Internet.
@@ -51,7 +78,7 @@ La administración de red para cada red de intercambio de tráfico es la misma: 
 - Video1 - [Creating VPC and Subnets in Google Cloud Console](https://www.youtube.com/watch?v=W2Wlz3PcEIQ)
 - Video2 - [Creating VPC and Subnets using gcloud CLI](https://www.youtube.com/watch?v=5pGm_ZDirBU)
 
-#### **Custom-mode VPC**
+#### **auto or Custom-mode VPC**
 * Creating an auto mode 
     ```bash
     gcloud compute networks create NETWORK \

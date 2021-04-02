@@ -448,3 +448,33 @@ Dual-regions
     - ASIA1
     - EUR4
     - NAM4
+
+
+**signurl - Create a signed url**
+> The signurl command will generate a signed URL that embeds authentication data so the URL can be used by someone who does not have a Google account.
+
+- [Options](https://cloud.google.com/storage/docs/gsutil/commands/signurl#options)
+
+
+```bash
+#Create a signed url for downloading an object valid for 10 minutes:
+gsutil signurl -d 10m <private-key-file> gs://<bucket>/<object>
+
+
+#Create a signed url without a private key, using a service account's credentials:
+gsutil signurl -d 10m -u gs://<bucket>/<object>
+
+#Create a signed url by impersonating a service account:
+gsutil -i <service account email> signurl -d 10m -u gs://<bucket>/<object>
+
+#Create a signed url, valid for one hour, for uploading a plain text file via HTTP PUT:
+gsutil signurl -m PUT -d 1h -c text/plain <private-key-file> 
+gs://<bucket>/<obj>
+
+#To construct a signed URL that allows anyone in possession of the URL to PUT to the specified bucket for one day, creating an object of Content-Type image/jpg, run:
+gsutil signurl -m PUT -d 1d -c image/jpg <private-key-file>   gs://<bucket>/<obj>
+
+#To construct a signed URL that allows anyone in possession of the URL to POST a resumable upload to the specified bucket for one day, creating an object of Content-Type image/jpg, run:
+gsutil signurl -m RESUMABLE -d 1d -c image/jpg <private-key-file> gs://bucket/<obj>
+```
+

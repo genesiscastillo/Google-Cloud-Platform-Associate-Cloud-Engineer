@@ -12,6 +12,9 @@
     - [How to Configure and Deploy An Application on Google App Engine](https://www.gspann.com/resources/blogs/how-to-configure-and-deploy-an-application-on-google-app-engine/)
     - [Building an App on App Engine](https://cloud.google.com/appengine/docs/standard/java/building-app)
 
+* Video:
+  - [Developing apps that scale automatically with Google App Engine](https://www.youtube.com/watch?v=HN5JKvvKUgQ)
+
 > The App Engine is a fully-managed platform as a service (PaaS) for building web applications in which the user doesn’t need to manage the underlying operating systems, configurations, security issues, firewalls, and auto-scaling. By using this service, developers can manage the entire application just by making a configuration file called app.yaml to make the code compatible with the App Engine.
 
 ![App Engine](https://cloud.google.com/appengine/docs/images/modules_hierarchy.svg)
@@ -19,6 +22,9 @@
 
 > The App Engine is based on serverless architecture. It is available with two types of runtime environments:
 > * **Standard environment**: It supports only a few languages, including Python, Node js, Go, PHP, .Net, Java. To deploy a Python application, it requires a standard environment along with a configuration file that defines our runtime environment in the file app.yaml.
+
+
+
 > * **Flexible environment**: It supports all kinds of applications and provides some control over the infrastructure. It uses Docker containers as a resource to run the application. Besides the supported runtimes, it can also make custom runtime using a Dockerfile.
 
 > The App Engine does not understand the source code for deployment. The source code needs to be refactored with the configuration file called app.yaml, where it’s important to mention the runtime and scaling details
@@ -182,4 +188,167 @@ gcloud functions logs read --limit 50
 
 gcloud functions delete helloGCS 
 ```
+---
+### OTHER NOTES
 
+#### DEPLOYAR 
+UNA APLICACION WAR de Spring MVC -Jetty - java8
+UNA APLICACION JAR SpringBoot Jetty - java11
+A UN ENTORNO "STANDARD" de APP ENGINE de Google Cloud Platform
+
+
+1.- Definicion de App Engine segun GCP
+https://cloud.google.com/appengine?hl=es
+
+2.- Caracteristicas de App Engine
+https://www.beservices.es/caracteristicas-google-app-engine-desarrolladores-n-5373-es
+
+3.- Entornos de App Engine
+https://cloud.google.com/appengine/docs/the-appengine-environments?hl=es-419
+
+4.- Aplicaciones Ejemplo
+https://mkyong.com/spring-mvc/spring-mvc-form-handling-example/
+https://mkyong.com/spring-boot/spring-boot-hello-world-example-thymeleaf/
+
+5.- Probar la aplicacion Local 
+
+6.- Cambios necesarios
+```xml
+	<jdk.version>1.8</jdk.version>
+
+	<plugin>
+		<groupId>com.google.cloud.tools</groupId>
+		<artifactId>appengine-maven-plugin</artifactId>
+		<version>2.4.0</version>
+		<configuration>
+			<projectId>${project.artifactId}</projectId>
+			<version>${project.artifactId.version}</version>
+		</configuration>
+	</plugin>
+```
+6..- agregar un appengine-web.xml  en  src/main/webapp/WEB-INF/
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
+  <application>_your_app_id_</application>
+  <version>alpha-001</version>
+  <threadsafe>true</threadsafe>
+  <runtime>java8</runtime>
+</appengine-web-app>
+```
+6.0.- SEGUNDO APP
+```xml
+-- depedency springboot-starter-web
+<exclusions>
+           <exclusion>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter-tomcat</artifactId>
+           </exclusion>
+        </exclusions>
+-- add dependency
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-jetty</artifactId>
+</dependency>
+---plugin springboot maven---
+          <executions>
+              <execution>
+                  <goals>
+                      <goal>repackage</goal>
+                  </goals>
+              </execution>
+          </executions>
+```
+[Entorno de ejecución de Java 11](https://cloud.google.com/appengine/docs/standard/java11/runtime?hl=es-419)
+
+6.0- para segundo app java11 - crear folder appengine y app.yaml
+	runtime: java11
+
+
+7.- generar deployable war para app engine
+mvn clean package appengine:stage
+
+8.- listo los componentes para deployar el war a app engine
+cd target\appengine
+
+9.- vamos a acceder al proyecto en gcp y para desplegar al appengine
+```bash
+gcloud auth revoke --all
+
+gcloud auth login
+
+gcloud projects list
+```
+10.- Configurar para trabajar sobre el proyecto creado
+gcloud projects create sign-in-21-ccf-1 --name="Sign 2021 SpringMVC"
+```bash
+gcloud config set project PROJECT_ID
+```
+11.- veremos que servicio nos proporciona gcp al momento de acceder 
+al acceder
+```bash
+gcloud services list
+```
+12.- Revisar y/o Habilitar el servicio "app engine" para este proyecto
+```bash
+gcloud services list --available
+
+gcloud services enable appengine.googleapis.com
+
+gcloud services list
+```
+13.- Revisar la consola GCP sobre appengine
+
+14.- Deployar el war a app engine sobre la ruta appengine
+```bash
+gcloud app deploy app.yaml
+
+gcloud app browser
+
+gcloud app describe
+
+gcloud app instances list
+
+#To get a list of services:
+gcloud app services list
+
+#To describe a service
+gcloud app services describe default
+
+gcloud app versions list
+
+#VERSION=20210212t100839
+gcloud app browse --version=20210212t100839
+
+gcloud app versions describe --service default --version 20210212t100839
+
+
+gcloud app versions delete 20210213t231852
+
+gcloud app versions list
+
+gcloud app versions stop 20210213t231852--quiet
+
+gcloud app versions start 20210212t100839— quiet
+```
+15.- eliminar los recursos y bajar la instancia
+```bash
+gcloud app instances delete i1 --service=s1 --version=v1
+```
+
+16.- completa informacion sobre command app de gcloud
+- [INFO](https://medium.com/google-cloud/app-engine-project-cleanup-9647296e796a)
+---
+#### Pregunta Certificed Associate Engineer Google Cloud Platform
+
+Jhon & CO. ha deployed an application using Google App Engine standard
+enviroment. You have been asked to update the cron schedules and  
+default cokkie expiration time, which of the following predefined
+role has access to update default cokkie expiration but no access to
+update cron schedules?
+
+  * 1.- App Engine Service Admin
+  * 2.- App Engine Admin
+  * 3.- App Engine Deployer
+  * 4.- App Engine Code Viewer
+  
