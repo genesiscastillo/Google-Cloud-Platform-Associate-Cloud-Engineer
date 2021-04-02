@@ -1,4 +1,5 @@
-# Google Associate Cloud Engineer Practice ExamPart 3
+# Google Associate Cloud Engineer Practice 
+# Exam Part - 3
 
 1. You want to deploy a cost-sensitive application to Google Cloud Compute Engine. You want the application to be up at all times, but because of the cost-sensitive nature of the application, you only want to run the application in a single VM instance. How should you configure the managed instance group?__[REVISAR]__
 

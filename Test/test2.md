@@ -1,4 +1,5 @@
-ExamPart 6
+# Google Associate Cloud Engineer Practice 
+# Exam Part - 6
 
 1. Your company has a massive quantity of unstructured data in text, Apache AVRO and PARQUET􀃕les in the on-premise data centre and wants to transform this data using a Data􀃖ow job andmigrate cleansed/enriched data to BigQuery. How should you make the on-premise 􀃕lesaccessible to Cloud Data􀃖ow?
 A. Migrate the data from the on-premises data centre to Cloud Spanner by using theupload 􀃕les function.
