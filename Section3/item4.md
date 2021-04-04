@@ -455,6 +455,16 @@ Dual-regions
 
 - [Options](https://cloud.google.com/storage/docs/gsutil/commands/signurl#options)
 
+OPTIONS|Descriptions
+---|---
+-c | Specifies the content type for which the signed url is valid for.
+-m | Specifies the HTTP method to be authorized for use with the signed url, default is GET. You may also specify RESUMABLE to create a signed resumable upload start URL. When using a signed URL to start a resumable upload session, you will need to specify the 'x-goog-resumable:start' header in the request or else signature validation will fail.
+-d | Specifies the duration that the signed url should be valid for, default duration is 1 hour.
+-p | Specify the private key password instead of prompting.
+-u | Use service account credentials instead of a private key file to sign the url.
+-r | Specifies the region in which the resources for which you are creating signed URLs are stored.
+
+#### examples
 
 ```bash
 #Create a signed url for downloading an object valid for 10 minutes:
