@@ -361,3 +361,6 @@ want to minimize changes while ensuring the services can continue to connect to 
     * B. **Use gcloud app deploy to deploy the enhancement as a new version in the existing application and use –splits flag to split the traffic between the old version and the new version. Assign a weight of 1 to the new version and 99 to the old version.**
     * C. Use gcloud app deploy to deploy the enhancement as a new version in the existing application with -migrate flag.
     * D. Deploy the enhancement as a new App Engine Application in the existing GCP project.Configure the network load balancer to route 99% of the requests to the old (existing) App Engine Application and 1% to the new App Engine Application.
+
+BUENAS  . 30
+MALAS . 20

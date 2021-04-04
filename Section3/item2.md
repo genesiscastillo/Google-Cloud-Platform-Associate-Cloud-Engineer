@@ -7,6 +7,10 @@
 ---
 ### 3.2.1.- Deploying a Kubernetes Engine cluster
 
+
+#### Creating a GKE cluster
+
+The first step is to create a container cluster to run application workloads. The following command creates a new cluster with five nodes with the default machine type __(e2-medium)__:
 ```bash
 gcloud components install kubectl
 
