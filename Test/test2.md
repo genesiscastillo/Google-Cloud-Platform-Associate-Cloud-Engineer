@@ -171,170 +171,178 @@ What should you do?
 
     * A. Create a custom role with the necessary permissions and grant the role on the production GCP project to all members of the operations team.
     * B. Grant the Project Editor role at the organization level to all members of the operations team.
-    * C. Grant the Project Editor role on the production GCP project to all members of the operations team.
+    * C. **Grant the Project Editor role on the production GCP project to all members of the operations team.**
     * D. Create a custom role with the necessary permissions and grant the role at the organization level to all members of the operations team.
 
-30. EU GDPR requires you to respond to a Subject Access Request (SAR) within one month. To be compliant, your company deployed an application that uses Apache WebServer to provide SARarchive (tar) files back to customers requesting them. Your compliance team has asked you to send them an email notification when the network egress charges for this server in the GCP project exceeds 250 dollars per month. What should you do?
+30. EU GDPR requires you to respond to a Subject Access Request (SAR) within one month. To be compliant, your company deployed an application that uses Apache Web Server to provide SAR archive (tar) files back to customers requesting them. Your compliance team has asked you to send them an email notification when the network egress charges for this server in the GCP project exceeds 250 dollars per month. What should you do?
 
     * A. Export the logs from Apache server to Cloud Logging and deploy a Cloud Function to parse the logs, extract and sum up the size of response payload for all requests during the current month; and send an email notfication when spending exceeds $250.
     * B. Configure a budget with the scope set to the billing account, the amount set to $250,t hreshold rule set to 100% of actual cost & trigger email notifications when spending exceeds the threshold.
     * C. Export the project billing data to a BigQuery dataset and deploy a Cloud Function to extract and sum up the network egress costs from the BigQuery dataset for the Apache server for the current month, and send an email notification when spending exceeds $250.
-    * D. Configure a budget with the scope set to the project, the amount set to $250, threshold rule set to 100% of actual cost & trigger email notifications when spending exceeds thethreshold.
+    * D. ***Configure a budget with the scope set to the project, the amount set to $250, threshold rule set to 100% of actual cost & trigger email notifications when spending exceeds the threshold.**
 
 31. You are running a business-critical application in a GKE cluster in a subnet with cluster autoscaling enabled. A massive surge in demand for your company’s products has seen the GKE cluster node pool scale-up until there were no more free IP addresses available for new VMs inthe subnet. What should you do to fix this issue?
 
     * A. Add a new subnet to the same region.
     * B. Add a secondary (alias) IP range to the existing subnet.
     * C. Add a new VPC and set up VPC sharing between the new and existing VPC.
-    * D. Expand the range of the existing subnet.
+    * D. **Expand the range of the existing subnet.**
 
 32. You developed an application on App Engine Service to read data from a BigQuery dataset and convert the data to PARQUET format. The application is using the default app-engine service account in the app-tier GCP project. The data team owns the BigQuery dataset in the data-warehousing project. What IAM Access should you grant to the default app-engine service account in app-tier GCP project?
 
     * A. Grant the default app-engine service account in the app-tier GCP project roles/bigquery.data Viewer role on the data-warehousing project.
-    * B. Grant the service account in the data-warehousing GCP project roles/bigquery.job Userrole on the app-tier project.
-    * C. Grant the default app-engine service account in the app-tier GCP projectroles/bigquery.dataViewer role on the same project.
-    * D. Grant the default app-engine service account in the app-tier GCP projectroles/bigquery.jobUser role on data-warehousing project.
+    * B. Grant the service account in the data-warehousing GCP project roles/bigquery.job User role on the app-tier project.
+    * C. Grant the default app-engine service account in the app-tier GCP project roles/bigquery.dataViewer role on the same project.
+    * D. Grant the default app-engine service account in the app-tier GCP project roles/bigquery.jobUser role on data-warehousing project.
 
 33. Your company updated its business operating model recently and no longer need the applications deployed in the data-analytics-v1 GCP project. You want to turn off all GCP services and APIs in this project. You want to do this eficiently using the least number of steps while following Google recommended practices. What should you do?
 
     * A. Ask an engineer with Project Owner IAM role to identify all resources in the project and delete them.
     * B. Ask an engineer with Project Owner IAM role to locate the project and shut down.
-    * C. Ask an engineer with Organization Administrator IAM role to identify all resources in the project and delete them.
+    * C. **Ask an engineer with Organization Administrator IAM role to identify all resources in the project and delete them.**
     * D. Ask an engineer with Organization Administrator IAM role to locate the project and shutdown.
 
-34. You deployed an application on a general-purpose Google Cloud Compute Engine instancethat uses a persistent zonal SSD of 300 GB. The application downloads large Apache AVRO 􀃕lesfrom Cloud Storage, retrieve customer details from them and saves a text 􀃕le on local disk foreach customer before pushing all the text 􀃕les to a Google Storage Bucket. These operationsrequire high disk I/O, but you 􀃕nd that the read and write operations on the disk are alwaysthrottled. What should you do to improve the throughput while keeping costs to a minimum?
+34. You deployed an application on a general-purpose Google Cloud Compute Engine instance that uses a persistent zonal SSD of 300 GB. The application downloads large Apache AVRO files from Cloud Storage, retrieve customer details from them and saves a text file on local disk for each customer before pushing all the text files to a Google Storage Bucket. These operations require high disk I/O, but you find that the read and write operations on the disk are always throttled. What should you do to improve the through put while keeping costs to a minimum?
 
     * A. Bump up the size of its SSD persistent disk to 1 TB.
-    * B. Replace Zonal Persistent SSD with a Local SSD.
+    * B. **Replace Zonal Persistent SSD with a Local SSD.**
     * C. Replace Zonal Persistent SSD with a Regional Persistent SSD.
     * D. Bump up the CPU allocated to the general-purpose Compute Engine instance.
 
-35. You want to monitor resource utilization (RAM, Disk, Network, CPU, etc.) for all applications indevelopment, test and production GCP projects in a single dashboard. What should you do?
+35. You want to monitor resource utilization (RAM, Disk, Network, CPU, etc.) for all applications in development, test and production GCP projects in a single dashboard. What should you do?
 
     * A. In Cloud Monitoring, share charts from development, test and production GCP projects.
-    * B. Create a Cloud Monitoring workspace in the production project and add developmentand test projects to it.
+    * B. **Create a Cloud Monitoring workspace in the production project and add development and test projects to it.**
+        > __A Workspace__ is a tool for monitoring resources contained in one or more Google Cloud projects or AWS accounts. A Workspace accesses metric data from its monitored projects, but the metric data remains in those projects.
     * C. Make use of the default Cloud Monitoring dashboards in all the projects.
     * D. Grant roles/monitoring.admin to development, test and production GCP projects.
 
-36. You have an application in your on-premises data centre with an API that is triggered when anew 􀃕le is created or updated in a NAS share. You want to migrate this solution to Google CloudPlatform and have identi􀃕ed Cloud Storage as the replacement service for NAS. How should youdeploy the API?
+36. You have an application in your on-premises data centre with an API that is triggered when a new file is created or updated in a NAS share. You want to migrate this solution to Google Cloud Platform and have identifed Cloud Storage as the replacement service for NAS. How should you deploy the API?
 
     * A. Deploy the API on GKE cluster and use Cloud Scheduler to trigger the API to look for 􀃕lesin Cloud Storage there were created or update since the last run.
-    * B. Trigger a Cloud Function whenever 􀃕les in Cloud Storage are created or updated.
-    * C. Trigger a Cloud Data􀃖ow job whenever 􀃕les in Cloud Storage are created or updated.
-    * D. Con􀃕gure Cloud Pub/Sub to capture details of 􀃕les created/modi􀃕ed in Cloud Storage.Deploy the API in App Engine Standard and use Cloud Scheduler to trigger the API to fetchinformation from Cloud Pub/Sub.
+    * B. **Trigger a Cloud Function whenever files in Cloud Storage are created or updated.**
+    * C. Trigger a Cloud Dataflow job whenever files in Cloud Storage are created or updated.
+    * D. Configure Cloud Pub/Sub to capture details of files created/modifed in Cloud Storage. Deploy the API in App Engine Standard and use Cloud Scheduler to trigger the API to fetch information from Cloud Pub/Sub.
 
-37. You are running a business-critical application in a 􀃖eet of compute engine instances behindan autoscaled Managed Instances Group (MIG). The MIG initiated a scale-up event to keep upwith the increasing incoming tra􀃞c, but the compute engine instance failed to create. Howshould you debug this issue?
+37. You are running a business-critical application in a feet of compute engine instances behind an autoscaled Managed Instances Group (MIG). The MIG initiated a scale-up event to keep up with the increasing incoming traffic, but the compute engine instance failed to create. How should you debug this issue?
 
-    * A. 1. Ensure you don’t have any persistent disks with the same name as the VM instance. 2.Ensure the disk autodelete property is turned on (disks.autoDelete set to true). 3. Ensureinstance template syntax is valid.
+    * A. 1. Ensure you don’t have any persistent disks with the same name as the VM instance. 2.Ensure the disk auto delete property is turned on (disks.autoDelete set to true). 3. Ensure instance template syntax is valid.
     * B. 1. Ensure instance template syntax is valid. 2. Ensure the instance template, instance andthe persistent disk names do not con􀃖ict.
-    * C. 1. Ensure the instance template, instance and the persistent disk names do not con􀃖ict.2. Ensure the disk autodelete property is turned on (disks.autoDelete set to true).
-    * D. 1. Ensure you don’t have any persistent disks with the same name as the VM instance. 2.Ensure instance template syntax is valid.
+    * C. 1. Ensure the instance template, instance and the persistent disk names do not conflict.2. Ensure the disk auto delete property is turned on (disks.autoDelete set to true).
+    * D. 1. **Ensure you don’t have any persistent disks with the same name as the VM instance. 2.Ensure instance template syntax is valid.**
 
-38. You work for a multinational car insurance company that specializes in rewarding saferdrivers with cheaper premiums. Your company does this by installing black box loT devices in its 2million insured drivers’ cars. These devices capture driving behaviours such asacceleration/deceleration, speed compared to speed limits, and types of driving, such ascommuting on freeway compared to commuting on surface streets etc. You expect to receivehundreds of events per minute from every device. You need to store this data and retrieve dataconsistently based on the event time, and both operations should be atomic. How should youstore this data?
+38. You work for a multinational car insurance company that specializes in rewarding safer drivers with cheaper premiums. Your company does this by installing black box loT devices in its 2million insured drivers’ cars. These devices capture driving behaviours such as acceleration/deceleration, speed compared to speed limits, and types of driving, such as commuting on freeway compared to commuting on surface streets etc. You expect to receive hundreds of events per minute from every device. You need to store this data and retrieve data consistently based on the event time, and both operations should be atomic. How should youstore this data?
 
-    * A. Store the data in Cloud Storage. Have a 􀃕le per loT device and append new data to the􀃕le.
+    * A. Store the data in Cloud Storage. Have a file per loT device and append new data to the file.
     * B. Store the data in Cloud Datastore. Have an entity group per device.
-    * C. Store the data in Cloud BigTable. Have a row key based on the ingestion timestamp.
-    * D. Store the data in Cloud Filestore. Have a 􀃕le per loT device and append new data to the􀃕le.
+    * C. **Store the data in Cloud BigTable. Have a row key based on the ingestion timestamp.**
+    * D. Store the data in Cloud Filestore. Have a file per loT device and append new data to the file.
 
-39. Your team creates/updates the infrastructure for all production requirements. You need toimplement a new change to the current infrastructure and want to preview the update to the restof your team before committing the changes. You want to follow Google- recommendedpractices. What should you?
+39. Your team creates/updates the infrastructure for all production requirements. You need to  implement a new change to the current infrastructure and want to preview the update to the rest of your team before committing the changes. You want to follow Google recommended practices. What should you?
 
-    * A. Clone the production environment to create a staging environment and deploy theproposed changes to the staging environment. Execute gcloud compute instances list toview the changes and store the results in a Google Cloud Storage bucket.
-    * B. Preview the updates using Deployment Manager and store the results in a Google CloudStorage bucket.
-    * C. Clone the production environment to create a staging environment and deploy theproposed changes to the staging environment. Execute gcloud compute instances list to view the changes and store the results in a Google Cloud Source Repository.
-    * D. Preview the updates using Deployment Manager and store the results in a Google CloudSource Repository.
+    * A. Clone the production environment to create a staging environment and deploy the proposed changes to the staging environment. Execute gcloud compute instances list to view the changes and store the results in a Google Cloud Storage bucket.
+    * B. Preview the updates using Deployment Manager and store the results in a Google Cloud Storage bucket.
+    * C. Clone the production environment to create a staging environment and deploy the proposed changes to the staging environment. Execute gcloud compute instances list to view the changes and store the results in a Google Cloud Source Repository.
+    * D. __Preview the updates using Deployment Manager and store the results in a Google Cloud Source Repository.__
+        > gcloud deployment-manager deployments create example-config --config configuration-file.yaml --preview
 
-4. Your company is building a mobile application that enables users to upload and share imageswith their friends. Your company places a high value on security. Prefers minimal maintenance(no-op), and wants to optimize costs where possible. You are designing the backend for the appbased on these requirements:
+4. Your company is building a mobile application that enables users to upload and share images with their friends. Your company places a high value on security. Prefers minimal maintenance(no-op), and wants to optimize costs where possible. You are designing the backend for the app based on these requirements:
 – Enable users to upload images for only 30 minutes,
 – Enable users to retrieve their images and share their images with their friends,
 – Delete images older than 50 days.
 You have very little time to design the solution and take it to production. What should you do?(Choose two)
 
-   * A. Have the mobile application use signed URLs to enabled time- limited upload to CloudStorage.
-   * B. Use Cloud Scheduler to trigger a Cloud Function to check for objects older than 50 daysand delete them.
-   * C. Enable lifecycle policy on the bucket to delete objects older than 50 days.
+   * A. **Have the mobile application use signed URLs to enabled time- limited upload to Cloud Storage.**
+   * B. Use Cloud Scheduler to trigger a Cloud Function to check for objects older than 50 days and delete them.
+   * C. **Enable lifecycle policy on the bucket to delete objects older than 50 days.**
    * D. Write a cron script that checks for objects older than 50 days and deletes them.
    * E. Have the mobile application send the images to an SFTP server.
 
-40. An auditor requires speci􀃕c access on certain GCP services in your Cloud project. You havestarted working on the 􀃕rst version of a custom IAM role to enable this access. You are currentlytesting this role in a test GCP project. The compliance team requires this role to be production-ready, and want you to share with them the lifecycle stage. What should you do?
+40. An auditor requires specific access on certain GCP services in your Cloud project. You have started working on the first version of a custom IAM role to enable this access. You are currently testing this role in a test GCP project. The compliance team requires this role to be production-ready, and want you to share with them the lifecycle stage. What should you do?
 
-    * A. 1. Set the custom IAM role lifecycle stage to ALPHA while you test the role in the test GCPproject. 2. Restrict the custom IAM role to use permissions with TESTING support level.
-    * B. 1. Set the custom IAM role lifecycle stage to BETA while you test the role in the test GCPproject. 2. Restrict the custom IAM role to use permissions with SUPPORTED support level.
-    * C. 1. Set the custom IAM role lifecycle stage to BETA while you test the role in the test GCPproject. 2. Restrict the custom IAM role to use permissions with TESTING support level.
-    * D. 1. Set the custom IAM role lifecycle stage to ALPHA while you test the role in the test GCPproject. 2. Restrict the custom IAM role to use permissions with SUPPORTED support level.
+    * A. 1. Set the custom IAM role lifecycle stage to ALPHA while you test the role in the test GCP project. 2. Restrict the custom IAM role to use permissions with TESTING support level.
+    * B. 1. Set the custom IAM role lifecycle stage to BETA while you test the role in the test GCP project. 2. Restrict the custom IAM role to use permissions with SUPPORTED support level.
+    * C. 1. Set the custom IAM role lifecycle stage to BETA while you test the role in the test GCP project. 2. Restrict the custom IAM role to use permissions with TESTING support level.
+    * D. **1. Set the custom IAM role lifecycle stage to ALPHA while you test the role in the test GCP project. 2. Restrict the custom IAM role to use permissions with SUPPORTED support level.**
 
-41. Your company stores an export of its Customer PII data in a multi-regional Google Cloudstorage bucket. Your legal and compliance department has asked you to record alloperations/requests on the data in this bucket. What should you do?
+        > __--stage=STAGE__ . The state of the role you want to create. This represents a role's lifecycle phase: ALPHA, BETA, GA, DEPRECATED, DISABLED, EAP.
+        > __ALPHA__: The role is still being developed or tested, or it includes permissions for Google Cloud services or features that are not yet public. It is not ready for widespread use.
+        > __BETA__: The role has been tested on a limited basis, or it includes permissions for Google Cloud services or features that are not generally available.
+        > __GA__: The role has been widely tested, and all of its permissions are for Google Cloud services or features that are generally available.
 
-    * A. Enable the default Cloud Storage Service account exclusive access to read all operationsand record them.
+41. Your company stores an export of its Customer PII data in a multi-regional Google Cloud storage bucket. Your legal and compliance department has asked you to record all operations/requests on the data in this bucket. What should you do?
+
+    * A. Enable the default Cloud Storage Service account exclusive access to read all operations and record them.
     * B. Use the Data Loss Prevention API to record this information.
     * C. Use the Identity Aware Proxy API to record this information.
     * D. Turn on data access audit logging in Cloud Storage to record this information.
 
-42. A 􀃕nance analyst at your company is suspended pending an investigation into alleged􀃕nancial misconduct. However, their Gsuite account was not disabled immediately. Yourcompliance team has asked you to 􀃕nd out if the suspended employee has accessed any auditlogs or BigQuery datasets after their suspension. What should you do?
+42. A finance analyst at your company is suspended pending an investigation into alleged financial mis conduct. However, their Gsuite account was not disabled immediately. Your compliance team has asked you to find out if the suspended employee has accessed any audit logs or BigQuery datasets after their suspension. What should you do?
 
-    * A. Search for users’ Cloud Identity username (email address) as the principal in systemevent logs in Cloud Logging.
-    * B. Search for users’ Cloud Identity username (email address) as the principal in data accesslogs in Cloud Logging.
+    * A. Search for users’ Cloud Identity username (email address) as the principal in system event logs in Cloud Logging.
+    * B. Search for users’ Cloud Identity username (email address) as the principal in data access logs in Cloud Logging.
     * C. Search for users’ service account as the principal in admin activity logs in Cloud Logging.
     * D. Search for users’ service account as the principal in data access logs in Cloud Logging.
 
-43. Your company wants to migrate all compute workloads from the on-premises data centre toGoogle Cloud Compute Engine. A third-party team provides operational support for yourproduction applications outside business hours. Everyone at your company has a Gsuite account,but the support team do not. How should you grant them access to the VMs?
+43. Your company wants to migrate all compute workloads from the on-premises data centre to Google Cloud Compute Engine. A third-party team provides operational support for your production applications outside business hours. Everyone at your company has a Gsuite account,but the support team do not. How should you grant them access to the VMs?
 
     * A. Use Cloud Identity Aware Proxy (IAP) to enable SSH tunnels to the VMs and add the third-party team as a tunnel user.
-    * B. Set up a 􀃕rewall rule to open SSH port (TCP:22) to the IP range of the third-party team.
-    * C. Set up a Cloud VPN tunnel between the third-party network and your production GCPproject.
+    * B. Set up a firewall rule to open SSH port (TCP:22) to the IP range of the third-party team.
+    * C. **Set up a Cloud VPN tunnel between the third-party network and your production GCP project.**
     * D. Add all the third party teams SSH keys to the production compute engine instances.
 
-44. All departments at your company have their own Google Cloud Projects. You got transferredinto a new department that doesn’t have a project yet, and you are ready to deploy a newapplication onto a Compute Engine Instance. What should you do?
+44. All departments at your company have their own Google Cloud Projects. You got transferred into a new department that doesn’t have a project yet, and you are ready to deploy a new application onto a Compute Engine Instance. What should you do?
 
-    * A. In the GCP Console, enable the Compute Engine API. When creating a new instance in theconsole, select the checkbox to create the instance in a new GCP project and provide theproject name and ID.
-    * B. Use gcloud commands 􀃕rst to create a new project, then to enable the Compute EngineAPI and 􀃕nally, to launch a new compute engine instance in the project.
-    * C. Run gcloud compute instances create with –project 􀃖ag to automatically create the newproject and a compute engine instance. When prompted to enable the Compute EngineAPI, select Yes.
-    * D. In the GCP Console, enable the Compute Engine API. Run gcloud compute instancescreate with – –project 􀃖ag to automatically create the new project and a compute engineinstance.
+    * A. In the GCP Console, enable the Compute Engine API. When creating a new instance in the console, select the checkbox to create the instance in a new GCP project and provide the project name and ID.
+    * B. **Use gcloud commands first to create a new project, then to enable the Compute Engine API and finally, to launch a new compute engine instance in the project.**
+    * C. Run gcloud compute instances create with –project flag to automatically create the new project and a compute engine instance. When prompted to enable the Compute Engine API, select Yes.
+    * D. In the GCP Console, enable the Compute Engine API. Run gcloud compute instances create with – –project flag to automatically create the new project and a compute engine instance.
 
-45. You deployed an application using Apache Tomcat server on a single Google Cloud VM. Usersare complaining of intermittent issues accessing a speci􀃕c page in the application, and you wantto look at the logs on the local disk. What should you do?
-    * A. Con􀃕gure a health check on the instance to identify the issue and email you the logswhen the application experiences the issue.
+45. You deployed an application using Apache Tomcat server on a single Google Cloud VM. Users are complaining of intermittent issues accessing a specific page in the application, and you want to look at the logs on the local disk. What should you do?
+
+    * A. Configure a health check on the instance to identify the issue and email you the logs when the application experiences the issue.
     * B. Check logs in Cloud Logging.
     * C. Check logs in the Serial Console.
-    * D. Install the Cloud Logging Agent on the VM and con􀃕gure it to send logs to Cloud Logging.Check logs in Cloud Logging.
+    * D. **Install the Cloud Logging Agent on the VM and configure it to send logs to Cloud Logging.Check logs in Cloud Logging.**
 
-46. Your company plans to migrate all applications from the on-premise data centre to GoogleCloud Platform and requires a monthly estimate of the cost of running these applications in GCP.How can you provide this estimate?
+46. Your company plans to migrate all applications from the on-premise data centre to Google Cloud Platform and requires a monthly estimate of the cost of running these applications in GCP. How can you provide this estimate?
 
-    * A. For all GCP services/APIs you are planning to use, use the GCP pricing calculator toestimate the monthly costs.
-    * B. For all GCP services/APIs you are planning to use, capture the pricing from the productspricing page and use an excel sheet to estimate the monthly costs.
-    * C. Migrate all applications to GCP and run them for a week. Use the costs from the BillingReport page for this week to extrapolate the monthly cost of running all applications inGCP.
-    * D. Migrate all applications to GCP and run them for a week. Use Cloud Monitoring toidentify the costs for this week and use it to derive the monthly cost of running allapplications in GCP.
+    * A. **For all GCP services/APIs you are planning to use, use the GCP pricing calculator to estimate the monthly costs.**
+    * B. For all GCP services/APIs you are planning to use, capture the pricing from the products pricing page and use an excel sheet to estimate the monthly costs.
+    * C. Migrate all applications to GCP and run them for a week. Use the costs from the Billing Report page for this week to extra polate the monthly cost of running all applications in GCP.
+    * D. Migrate all applications to GCP and run them for a week. Use Cloud Monitoring to identify the costs for this week and use it to derive the monthly cost of running all applications in GCP.
 
-5. Your company uses Google Cloud for all its compute workloads. One of the applications thatyou developed has passed unit testing, and you want to use Jenkins to deploy the application inUser Acceptance Testing (UAT) environment. Your manager has asked you to automate Jenkinsinstallation as quickly and e􀃞ciently as possible. What should you do?
+5. Your company uses Google Cloud for all its compute workloads. One of the applications that you developed has passed unit testing, and you want to use Jenkins to deploy the application in User Acceptance Testing (UAT) environment. Your manager has asked you to automate Jenkins installation as quickly and eficiently as possible. What should you do?
 
-    * A. Deploy Jenkins on a 􀃖eet of Google Cloud Compute Engine VMs in a Managed InstancesGroup (MIG) with autoscaling.
+    * A. Deploy Jenkins on a feet of Google Cloud Compute Engine VMs in a Managed Instances Group (MIG) with autoscaling.
     * B. Deploy Jenkins on a Google Compute Engine VM.
-    * C. Use GCP Marketplace to provision Jenkins.
+    * C. **Use GCP Marketplace to provision Jenkins.**
     * D. Deploy Jenkins on a GKE Cluster.
 
-6. Your company deployed its applications across hundreds of GCP projects that use di􀃠erentbilling accounts. The 􀃕nance team is struggling to add up all production Cloud Opex costs and hasrequested your assistance for enabling/providing a single pane of glass for all costs incurred byall applications in Google Cloud. You want to include new costs as soon as they become available.What should you do?
+6. Your company deployed its applications across hundreds of GCP projects that use diferent billing accounts. The finance team is struggling to add up all production Cloud Opex costs and has requested your assistance for enabling/providing a single pane of glass for all costs incurred by all applications in Google Cloud. You want to include new costs as soon as they become available. What should you do?
 
-    * A. Use Google pricing calculator for all the services used in all GCP projects and pass theestimated cost to 􀃕nance team every month.
-    * B. Enable Billing Export from all GCP projects to BigQuery and ask the 􀃕nance team to useGoogle Data Studio to visualize the data.
-    * C. Ask the 􀃕nance team to check reports view section in Cloud Billing Console.
-    * D. Use Cloud Scheduler to trigger a Cloud Function every hour. Have the Cloud Functiondownload the CSV from the Cost Table page and upload the data to BigQuery. Ask the􀃕nance team to use Google Data Studio to visualize the data.
+    * A. Use Google pricing calculator for all the services used in all GCP projects and pass the estimated cost to finance team every month.
+    * B. **Enable Billing Export from all GCP projects to BigQuery and ask the finance team to use Google Data Studio to visualize the data.**
+    * C. Ask the finance team to check reports view section in Cloud Billing Console.
+    * D. Use Cloud Scheduler to trigger a Cloud Function every hour. Have the Cloud Function download the CSV from the Cost Table page and upload the data to BigQuery. Ask the finance team to use Google Data Studio to visualize the data.
 
-7. Your production Compute workloads are running in a subnet with a range 192.168.20.128/25.A recent surge in tra􀃞c has seen the production VMs struggle, and you want to add more VMs,but there are no free IP addresses in the VPC. All new and old VMs need to communicate witheach other. How can you do this with the fewest steps?
+7. Your production Compute workloads are running in a subnet with a range 192.168.20.128/25.A recent surge in traffic has seen the production VMs struggle, and you want to add more VMs, but there are no free IP addresses in the VPC. All new and old VMs need to communicate with each other. How can you do this with the fewest steps?
 
-    * A. Create a new VPC and a new subnet with IP range 192.168.21.0/24. Enable VPC Peeringbetween the old VPC and new VPC. Con􀃕gure a custom Route exchange.
-    * B. Create a new VPC network and a new subnet with IP range 192.168.21.0/24. Enable VPCPeering between the old VPC and new VPC.
-    * C. Create a new non-overlapping Alias range in the existing VPC and Con􀃕gure the VMs touse the alias range.
+    * A. Create a new VPC and a new subnet with IP range 192.168.21.0/24. Enable VPC Peering between the old VPC and new VPC. Configure a custom Route exchange.
+    * B. Create a new VPC network and a new subnet with IP range 192.168.21.0/24. Enable VPC Peering between the old VPC and new VPC.
+    * C. Create a new non-overlapping  alias range in the existing VPC and Configure the VMs to use the alias range.
     * D. Update the subnet range to 192.168.20.0/24.
 
-8. Your compliance team has asked you to set up an external auditor access to logs from all GCPprojects for the last 60 days. The auditor wants to combine, explore and analyze the contents ofthe logs from all projects quickly and e􀃞ciently. You want to follow Google Recommendedpractices. What should you do?
+8. Your compliance team has asked you to set up an external auditor access to logs from all GCP projects for the last 60 days. The auditor wants to combine, explore and analyze the contents of the logs from all projects quickly and eficiently. You want to follow Google Recommended practices. What should you do?
 
-    * A. Set up a Cloud Storage sink destination to export logs from all the projects to a bucket.Con􀃕gure a lifecycle rule to delete objects older than 60 days. Ask the auditor to query logsfrom the bucket.
-    * B. Set up a Cloud Scheduler job to trigger a Cloud Function that reads and export logs fromall the projects to a BigQuery dataset. Con􀃕gure the table expiration on the dataset to 60days. Ask the auditor to query logs from the dataset.
-    * C. Set up a BigQuery sink destination to export logs from all the projects to a dataset.Con􀃕gure the table expiration on the dataset to 60 days. Ask the auditor to query logs fromthe dataset.
+    * A. Set up a Cloud Storage sink destination to export logs from all the projects to a bucket.Configure a lifecycle rule to delete objects older than 60 days. Ask the auditor to query logs from the bucket.
+    * B. Set up a Cloud Scheduler job to trigger a Cloud Function that reads and export logs from all the projects to a BigQuery dataset. Configure the table expiration on the dataset to 60 days. Ask the auditor to query logs from the dataset.
+    * C. **Set up a BigQuery sink destination to export logs from all the projects to a dataset.Configure the table expiration on the dataset to 60 days. Ask the auditor to query logs from the dataset.**
     * D. Ask the auditor to query logs from Cloud Logging.
 
-9. You work for a multinational delivery services company that uses Apache Cassandra DB as thebackend store for its delivery track and trace system. The existing on-premises data centre is outof space. To cope with an anticipated increase in requests in the run-up to Christmas, you want tomove this application rapidly to Google Cloud with minimal e􀃠ort whilst ensuring you can spin upmultiple stacks (development, test, production) and isolate them from each other. How can youdo this?
+9. You work for a multinational delivery services company that uses Apache Cassandra DB as the backend store for its delivery track and trace system. The existing on-premises data centre is out of space. To cope with an anticipated increase in requests in the run-up to Christmas, you want tomove this application rapidly to Google Cloud with minimal effort whilst ensuring you can spin up multiple stacks (development, test, production) and isolate them from each other. How can youdo this?
 
-    * A. Download the installation guide for Cassandra on GCP and follow the instructions toinstall the database.
+    * A. Download the installation guide for Cassandra on GCP and follow the instructions to install the database.
     * B. Launch Cassandra DB from Cloud Marketplace.
     * C. Install an instance of Cassandra DB on Google Cloud Compute Engine, take a snapshot ofthis instance and use the snapshot to spin up additional instances of Cassandra DB.
     * D. Install an instance of Cassandra DB on Google Cloud Compute Engine, take a snapshotof this instance and upload to Google Cloud Storage bucket. Every time you need a newinstance of Cassandra DB, spin up a new compute engine instance from the snapshot.
