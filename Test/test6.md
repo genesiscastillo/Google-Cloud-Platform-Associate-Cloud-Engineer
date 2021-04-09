@@ -68,13 +68,20 @@
 10. You need to create a new Kubernetes Cluster on Google Cloud Platform that can autoscale the number of worker nodes. What should you do?
 
     * A. **Create a cluster on Kubernetes Engine and enable autoscaling on Kubernetes Engine.**
+        > gcloud containers create my-container __--enable-autoscaling__
     * B. Create a cluster on Kubernetes Engine and enable autoscaling on the instance group of the cluster.
     * C. Configure a Compute Engine instance as a worker and add it to an unmanaged instance group. Add a load balancer to the instance group and rely on the load balancer to create additional ComputeEngine instances when needed.
     * D. Create Compute Engine instances for the workers and the master, and install Kubernetes. Rely on Kubernetes to create additional Compute Engine instances when needed.
 
 11. You have an application server running on Compute Engine in the europe-west1-d zone. You need to ensure high availability and replicate the server to the europe-west2-c zone using the fewest steps possible. What should you do?
 
-    * A. **Create a snapshot from the disk. Create a disk from the snapshot in the europe-west2-c zone.Create a new VM with that disk.** [PASOS]
+    * A. **Create a snapshot from the disk. Create a disk from the snapshot in the europe-west2-c zone.Create a new VM with that disk.**
+        > gcloud compute disks create DISK_NAME_1 --size DISK_SIZE_1 --type DISK_TYPE_1 --zone=europe-west1-d
+        > gcloud compute instances attach-disk INSTANCE_NAME_1 --disk DISK_NAME_1
+        > gcloud compute disks snapshot DISK_NAME_1 --snapshot-names SNAPSHOT_1
+        > gcloud compute instances create INSTANCE_NAME_2 --zone europe-west2-c
+        > gcloud compute disks create DISK_NAME_2 --source-snapshot projects/PROJECT_ID/global/snapshots/SNAPSHOT_1 --zone europe-west2-c
+        > gcloud compute instances attach-disk INSTANCE_NAME_2 --disk DISK_NAME_2
     * B. Create a snapshot from the disk. Create a disk from the snapshot in the europe-west1-d zone andthen move the disk to europe-west2-c. Create a new VM with that disk.
     * C. Use “gcloud” to copy the disk to the europe-west2-c zone. Create a new VM with that disk.
     * D. Use “gcloud compute instances move” with parameter “–destination-zone europe-west2-c” to movethe instance to the new zone.
@@ -100,13 +107,22 @@
     * B. Notify your users of an upcoming maintenance window. Deploy the update in that maintenance window.
     * C. Deploy the update as the same version that is currently running.
     * D. **Deploy the update as a new version. Migrate trafficc from the current version to the new version.**
+        > gcloud app deploy app.yaml
+        > gcloud app deploy app.yaml --version 987654321
+        > gcloud app services set-traffic [MY_SERVICE] --splits 987654321=1 --migrate
 
-15. __REPASAR__ You have created a Kubernetes deployment, called Deployment-A, with 3 replicas on your cluster. Another deployment, called Deployment-B, needs access to Deployment-A. You cannot expose Deployment-A outside of the cluster. What should you do?
+15. You have created a Kubernetes deployment, called Deployment-A, with 3 replicas on your cluster. Another deployment, called Deployment-B, needs access to Deployment-A. You cannot expose Deployment-A outside of the cluster. What should you do?__[REVISAR]__
 
     * A. Create a Service of type NodePort for Deployment A and an Ingress Resource for that Service. Have Deployment B use the Ingress IP address.
     * B. Create a Service of type LoadBalancer for Deployment A. Have Deployment B use the Service IPaddress.
     * C. Create a Service of type LoadBalancer for Deployment A and an Ingress Resource for that Service.Have Deployment B use the Ingress IP address.
     * D. **Create a Service of type ClusterIP for Deployment A. Have Deployment B use the Service IP address.** 
+        > __Type of Services:__
+        > * __ClusterIP (default):__ Internal clients send requests to a stable internal IP address.
+        > * __NodePort:__ Clients send requests to the IP address of a node on one or more nodePort values that are specified by the Service.
+        > * __LoadBalancer:__ Clients send requests to the IP address of a network load balancer.
+        > * __ExternalName:__ Internal clients use the DNS name of a Service as an alias for an external DNS name.
+        > * __Headless:__ You can use a headless service in situations where you want a Pod grouping, but don't need a stable IP address.
 
 16. You need to estimate the annual cost of running a Bigquery query that is scheduled to run nightly.What should you do?
 
@@ -129,11 +145,30 @@
     * C. For all projects, in the Google Cloud Platform Console under Roles, select both roles and combine them into a new custom role.
     * D. **For your organization, in the Google Cloud Platform Console under Roles, select both roles and combine them into a new custom role.**
 
+        > gcloud iam roles create role-id --organization=organization-id --file=role-abc.yaml
+        
+        > *role-abc.yaml*
+        ```yaml       
+        title: "My Company Admin"
+        description: "My custom role description."
+        stage: "ALPHA"
+        includedPermissions:
+        - iam.roles.get
+        - iam.roles.list
+        ```
+
 19. You work in a small company where everyone should be able to view all resources of a specific project. You want to grant them access following Google’s recommended practices. What should you do?
 
     * A. Create a script that uses “gcloud projects add-iam-policy-binding” for all users’ email addresses andthe Project Viewer role.
     * B. A. Create a script that uses “gcloud iam roles create” for all users’ email addresses and the Project Viewer role.
     * C. **Create a new Google Group and add all users to the group. Use “gcloud projects add-iam-policy-binding” with the Project Viewer role and Group email address.**
+    
+    > **gcloud projects add-iam-policy-binding** example-foo-bar-1 --member="**group:`admins@example.com`**" --role="roles/cloudbuild.builds.builder"
+        > * user:`ali@example.com`
+        > * serviceAccount:`my-other-app@appspot.gserviceaccount.com`
+        > * group:`admins@example.com`
+        > * domain:google.com
+
     * D. Create a new Google Group and add all members to the group. Use “gcloud iam roles create” withthe Project Viewer role and Group email address.
 
 20. You need to verify the assigned permissions in a custom IAM role. What should you do?
@@ -190,6 +225,8 @@
     * A. Open Buckets
     * B. Temporary Resources
     * C. **Signed URLs**
+        > for download : gsutil signurl -u -d 10m gs://BUCKET_NAME/OBJECT_NAME
+        > for upload   : gsutil signurl -m PUT -d 1h -c CONTENT_TYPE -u gs://BUCKET_NAME/OBJECT_NAME
     * D. Temporary URLs
 
 28. Of the options given, which is a NoSQL database?
@@ -220,7 +257,7 @@
     * C. **Cloud Storage**
     * D. Cloud Datastore
 
-32. Container Engine is built on which open source system?[REVISAR]
+32. __Container Engine__ is built on which open source system?[REVISAR]
 
     * A. Swarm
     * B. **Kubernetes**
@@ -255,6 +292,11 @@
     * C. Use startup scripts to re-configure the system as needed
     * D. Backup your data
 
+        > Types of failure
+        > * Unexpected single instance failure (persistent disk, startup script)
+        > * Unexpected single instance reboot (backup your data , persistent disk , startup script )
+        > * Zone or region failures (back up your data , replicate your persistent disks)
+
 37. Which tool allows you to sync data in your Google domain with Active Directory?
 
     * A. **Google Cloud Directory Sync (GCDS)**
@@ -272,6 +314,7 @@
 39. Which of the following is a virtual machine instance that can be terminated by Compute Engine without warning?
 
     * A. **A preemptible VM**
+        > A preemptible VM is an instance that you can create and run at a much lower price than normal instances. However, Compute Engine might stop (preempt) these instances if it requires access to those resources for other tasks. Preemptible instances are excess Compute Engine capacity, so their availability varies with usage.
     * B. A shared-core VM
     * C. A high-cpu VM
     * D. A standard VM
@@ -280,12 +323,17 @@
 
     * A. A managed instance group combines existing instances of diferent configurations into one manageable group
     * B. **A managed instance group uses an instance template to create identical instances**
+        > A MIG is a group of virtual machine (VM) instances that you control as a single entity. 
+        > MIGs support features such as autohealing, load balancing, autoscaling, auto-updating, and stateful workloads.
     * C. A managed instance group creates a  firewall around instances
     * D. A managed instance group is a set of servers used exclusively for batch processing
 
 41. What type of firewall rule(s) does Google Cloud’s networking support?[REVISAR]
 
     * A. **deny**
+        > Every VPC network has two implied firewall rules. 
+        > * One implied rule allows most egress traffic [Implied allow egress rule.]
+        > * the other denies all ingress traffic [Implied deny ingress rule]
     * B. allow, deny & filtered
     * C. allow
     * D. allow & deny
@@ -294,6 +342,8 @@
 
     * A. They’re the same, only the branding is diferent
     * B. **Each subnetwork controls the IP address range used for instances that are allocated to that subnetwork**
+        > A Virtual Private Cloud (VPC) network is a virtual version of a physical network, implemented inside of Google's production network
+        > Subnets are regional resources. Each subnet defines a range of IP addresses.
     * C. With subnetworks IP address allocation occurs at the global network level
     * D. Legacy networks are the preferred way to create networks
 
@@ -303,6 +353,7 @@
     * B. Average CPU utilization
     * C. Stackdriver Monitoring metrics
     * D. **App Engine Task Queues**
+        > The Task Queue service is designed for asynchronous work. It does not provide strong guarantees around the timing of task delivery and is therefore unsuitable for interactive applications where a user is waiting for the result.
 
 44. Which of the following features makes applying firewall settings easier?
 
@@ -310,6 +361,15 @@
     * B. **Tags**
     * C. Metadata
     * D. Labels
+        > Apply labels to any of these resources:
+        > * Virtual machine instances
+        > * Forwarding rules - Firewall rules
+        > * Images
+        > * Persistent disks
+        > * Persistent disk snapshots
+        > * Cloud Storage buckets
+        > * Static external IP addresses (beta)
+        > * VPN tunnels (beta)
 
 45. What option does Cloud SQL offer to help with high availability?
 
@@ -330,9 +390,10 @@
     * A. When an instance shuts down through a request to the guest operating system
     * B. A preemptible instance being terminated
     * C. **An instances.reset API call**
+        > https://www.googleapis.com/compute/v1/projects/myproject/zones/us-central1-f/instances/example-instance/reset
     * D. Shutting down via the cloud console
 
-48. Which type of account would you use in code when you want to interact with Google Cloud Services?[REVISAR]
+48. Which type of account would you use in code when you want to interact with __Google Cloud *Services*__?[REVISAR]
 
     * A. Google group
     * B. **Service account**
@@ -351,7 +412,7 @@
     * A. Make it as easy as possible to adjust the DNS record to cut over to your warm standby server.
     * B. Replace your warm standby server with a hot standby server.
     * C. Use a highly preconfigured machine image for deploying new instances.
-    * D. **Replace your active/active hybrid production environment (on-premises and GCP) with a warmstandby server.**
+    * D. **Replace your active/active hybrid production environment (on-premises and GCP) with a warm stand by server.**
 
 51. Which of the following is not a best practice for mitigating Denial of Service attacks on your Google Cloud infrastructure?[REVISAR]
 
@@ -359,6 +420,9 @@
     * B. Isolate your internal traffc from the external world
     * C. Scale to absorb the attack
     * D. Reduce the attack surface for your GCE deployment
+
+    > [Best Practices for DDoS Protection and Mitigation
+on Google Cloud Platform](https://cloud.google.com/files/GCPDDoSprotection-04122016.pdf)
 
 52. Which is the fastest instance storage option that will still be available when an instance is stopped?[REVISAR]
 
@@ -405,7 +469,8 @@
 58. If you do not grant a user named Bob permission to access a Cloud Storage bucket, but then usean ACL to grant access to an object inside that bucket to Bob, what will happen?[REVISAR]
 
     * A. Bob will be able to access all of the objects inside the bucket because he was granted access to at least one object in the bucket.
-    * B. **Bob will be able to access the object because bucket and object ACLs are independent of eachother.**
+    * B. **Bob will be able to access the object because bucket and object ACLs are independent of each other.**
+        > Bucket and object ACLs are independent of each other, which means that the ACLs on a bucket do not affect the ACLs on objects inside that bucket. 
     * C. Bob will not be able to access the object because he does not have access to the bucket.
     * D. It is not possible to grant access to an object when it is inside a bucket for which a user does not have access.
 
@@ -434,10 +499,10 @@
 
     * A. Whenever possible, assign roles to groups instead of to individuals.
     * B. Grant users the appropriate permissions to facilitate least privilege
-    * C. **Whenever possible, assign primitive roles rather than predefined roles.**
+    * C. **When ever possible, assign primitive roles rather than predefined roles.**
     * D. Audit all policy changes by checking the Cloud Audit Logs.
 
-63. Which of these is not a recommended method of authenticating an application with a GoogleCloud service?[REVISAR]
+63. Which of these is not a recommended method of authenticating an application with a Google Cloud service?[REVISAR]
 
     * A. Use the gcloud and/or gsutil commands.
     * B. Request an OAuth2 access token and use it directly.
@@ -451,7 +516,7 @@
     * C. Subnetworks and projects
     * D. **Projects and networks**
 
-65. Suppose you have a web server that is working properly, but you can’t connect to its instance VMover SSH. Which of these troubleshooting methods can you use without disrupting production traffic?(Select 3 answers.)[EVISAR]
+65. Suppose you have a web server that is working properly, but you can’t connect to its instance VM over SSH. Which of these troubleshooting methods can you use without disrupting production traffic?(Select 3 answers.)[EVISAR]
 
     * A. **Create a snapshot of the disk and use it to create a new disk; then attach the new disk to a new instance**
     * B. **Use netcat to try to connect to port 22**
@@ -472,7 +537,7 @@
     * C. Cloud Storage Console
     * D. **gsutil**
 
-68. What are two of the actions you can take to toubleshoot a virtual machine instance that won’t start up at all? (Select 2 answers.)[REVISAR]
+68. What are two of the actions you can take to troubleshoot a virtual machine instance that won’t start up at all? (Select 2 answers.)[REVISAR]
 
     * A. Increase the CPU and memory on the instance by changing the machine type.
     * B. **Validate that your disk has a valid file system.**
@@ -493,7 +558,7 @@
     * C. In order for an application to survive instance failures, it should not be stateless.
     * D. Resilience testing is the same as disaster recovery testing.
 
-71. Which combination of Stackdriver services will alert you about errors generated by your applications and help you locate the root cause in the code?[REVISAR]
+71. Which combination of Stackdriver services will alert you about __errors generated__ by your applications and help you locate the root cause in the code?[REVISAR]
 
     * A. Monitoring, Trace, and Debugger
     * B. Monitoring and Error Reporting
@@ -521,9 +586,9 @@
     * C. **Implement object versioning on the log-buckets.**
     * D. Encrypt the logs using Cloud KMS.
 
-75. If network traffic between one Google Compute Engine instance and another instance is beingdropped, what is the most likely cause?
+75. If network traffic between one Google Compute Engine instance and another instance is being dropped, what is the most likely cause?
 
-    * A. The instances are on a network with low bandwidth.
+    * A. The instances are on a network with low band width.
     * B. The TCP keep-alive setting is too short.
     * C. The instances are on a default network with no additional firewall rules.
     * D. **A firewall rule was deleted.**

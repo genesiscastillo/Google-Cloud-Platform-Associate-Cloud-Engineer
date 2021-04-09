@@ -50,14 +50,14 @@
     * C. **Grant the auditors’ group roles/logging.viewer and roles/bigquery.dataViewer IAM roles.**
     * D. Grant the auditors’ user accounts custom IAM roles with specific permissions.
 
-8. You are working for a cryptocurrency startup, and you have enabled a link to the company’s Initial Coin Offering (ICO) white paper on the company website – which runs of Google CloudStorage. Your CTO clicked on this link and got prompted to save the file to their desktop. The CTO thinks this is a poor user experience and has asked you to identify if it is possible to render the file directly in the browser for all users. What should you do?
+8. You are working for a crypto currency startup, and you have enabled a link to the company’s Initial Coin Offering (ICO) white paper on the company website – which runs of Google Cloud Storage. Your CTO clicked on this link and got prompted to save the file to their desktop. The CTO thinks this is a poor user experience and has asked you to identify if it is possible to render the file directly in the browser for all users. What should you do?
 
     * A. **Add a metadata tag on all the PDF file objects with key: Content- Type and value:application/pdf.**
     * B. Modify the bucket ACLs to make all PDF files public.
     * C. Add a label on the Cloud Storage bucket with key: Content-Type and value:application/pdf.
     * D. Use Cloud CDN to front the static bucket and set the HTTP header display In Browser to 1.
 
-10. You want to reduce storage costs for infrequently accessed data. The data will still beaccessed approximately once a month and data older than 2 years is no longer needed. What should you do to reduce storage costs? (Select 2)__[REVISAR]__
+10. You want to reduce storage costs for infrequently accessed data. The data will still be accessed approximately once a month and data older than 2 years is no longer needed. What should you do to reduce storage costs? (Select 2)__[REVISAR]__
 
     * A. Set an Object Lifecycle Management policy to change the storage class to Archive for data older than 2 years.
     * B. Set an Object Lifecycle Management policy to change the storage class to Coldline for data older than 2 years.
@@ -71,6 +71,9 @@
     * B. Enable Basic Scaling and set maximum instances to 3.
     * C. Enable Basic Scaling and set minimum instances to 3.
     * D. **Enable Automatic Scaling and set minimum idle instances to 3.**
+        > *google cloud app engine - appengine-web.xml*
+        > *The automatic_scaling* element sets minimum and maximum levels for number of instances, latency, and concurrent connections for a module.
+        > *min-idle-instances*.- The number of instances to be kept running and ready to serve traffic.This setting only applies to the version that receives most of the traffic.
 
 13. Your company owns a mobile game that is popular with users all over the world. The mobile game backend uses Cloud Spanner to store user state. An overnight job exports user state to a Cloud Storage bucket. The app pushes all time-series events during the game to a streaming Dataflow service that saves them to Cloud Bigtable. You are debugging an in-game issue raised by a gamer, and you want to join the user state information with data stored in Bigtable to debug. How can you do this one-off join eficiently?__[REVISAR]__
 
@@ -99,20 +102,36 @@
 
     * A. Create Compute Engine instances for the workers and the master and install Kubernetes.Rely on Kubernetes to create additional Compute Engine instances when needed.
     * B. **Enable Horizontal Pod Autoscaling for the Kubernetes deployment.**
+        > kubectl autoscale deployment nginx --cpu-percent=50 --min=1 --max=10
+
+        > kubectl get hpa
+
+        NAME|REFERENCE|TARGETS|   MINPODS|MAXPODS|REPLICAS|AGE
+        ---|---|---|---|---|---|---
+        nginx|Deployment/nginx |0%/50%|1|10|3|61s
+
+        > kubectl get hpa nginx -o yaml
+
+        > kubectl delete hpa nginx
     * C. Create a GKE cluster and enable autoscaling on the instance group of the cluster.
     * D. Configure a Compute Engine instance as a worker and add it to an unmanaged instancegroup. Add a load balancer to the instance group and rely on the load balancer to createadditional Compute Engine instances when needed.
     * E. **Create a GKE cluster and enable autoscaling on Kubernetes Engine.**
+        > gcloud container clusters create [CLUSTER_NAME] --num-nodes 30 --enable-autoscaling --min-nodes 15 --max-nodes 50 [--zone [COMPUTE_ZONE]]
 
-17. Your company wants to move all documents from a secure internal NAS drive to a GoogleCloud Storage (GCS) bucket. The data contains personally identiflable information (PII) and sensitive customer information. Your company tax auditors need access to some of these documents. What security strategy would you recommend on GCS?
+17. Your company wants to move all documents from a secure internal NAS drive to a Google Cloud Storage (GCS) bucket. The data contains personally identiflable information (PII) and sensitive customer information. Your company tax auditors need access to some of these documents. What security strategy would you recommend on GCS?
 
-    * A. Create randomized bucket and object names. Enable public access, but only providespecific file URLs to people who do not have Google accounts and need access.
+    * A. Create randomized bucket and object names. Enable public access, but only provid especific file URLs to people who do not have Google accounts and need access.
     * B. Use signed URLs to generate time-bound access to objects.
     * C. **Grant no Google Cloud Identity and Access Management (Cloud IAM) roles to users, and use granular ACLs on the bucket.**
+        > gsutil acl ch -g admins@example.com:R gs://example-bucket/
     * D. Grant IAM read-only access to users, and use default ACLs on the bucket.
 
 18. Users of your application are complaining of slowness when loading the application. You realize the slowness is because the App Engine deployment serving the application is deployed in us-central where as all users of this application are closest to europe-west3. You want to change the region of the App Engine application to europe-west3 to minimize latency. What’s the best way to change the App Engine region?
 
     * A. **Create a new project and create an App Engine instance in europe-west3**
+        > gcloud projects create my-new-proj-8 --region=europe-west3 
+        
+        > gcloud app deploy -f app.yaml --project=my-new-proj-8
     * B. Use the gcloud app region set command and supply the name of the new region.
     * C. From the console, under the App Engine page, click edit, and change the region drop-down.
     * D. Contact Google Cloud Support and request the change.
@@ -120,6 +139,7 @@
 19. You are developing a mobile game that uses Cloud Datastore for gaming leader boards and player profiles. You want to test an aspect of this solution locally on your Ubuntu workstation which already has Cloud SDK installed. What should you do?
 
     * A. **Install Datastore emulator to provide local emulation of the production datastore environment in your  local workstation by running gcloud components install.**
+        > gcloud beta emulators datastore start [flags]
     * B. Install Datastore emulator to provide local emulation of the production datastore aenvironment in your local workstation by running apt get install.
     * C. Add a new index to Cloud Datastore instance in the development project by running gcloud datastore indexes create and modify your application on your workstation to retrieve the data from Cloud Datastore using the index.
     * D. Initiate an export of Cloud Datastore instance from development GCP project by executing gcloud datastore export. Modify your applications to point to the export.
@@ -133,11 +153,11 @@
 
 21. You have a web application deployed as a managed instance group based on an instance template. You modifed the startup script used in the instance template and would like the existing instances to pick up changes from the new startup scripts. Your web application is currently serving live web traffic. You want to propagate the startup script changes to all instances in the managed instances group while minimizing effort, minimizing cost and ensuring that the available capacity does not decrease. What would you do?__[REVISAR]__
 
-    * A. Create a new managed instance group (MIG) based on a new template. Add the group to the backend service for the load balancer. When all instances in the new managed instance group are healthy, delete the old managed instance group.
+    * A. Create a new managed instance group (MIG) based on a new template. Add the group to the backend service for the load balancer. When all instances in the new    are healthy, delete the old managed instance group.
     * B. Delete instances in the managed instance group (MIG) one at a time and rely on auto-healing to provision an additional instance.
     * C. Perform a rolling-action start-update with max-unavailable set to 1 and max–surge set to 0.
     * D. **Perform a rolling-action replace with max-unavailable set to 0 and max-surge set to 1.**
-
+        > gcloud compute instance-groups managed rolling-action start-update [INSTANCE_GROUP_NAME] --version=template=[NEW_TEMPLATE] --min-ready=3m --max-unavailable=1 --max-surge=0 [--zone=ZONE | --region=REGION]
 23. To facilitate disaster recovery, your company wants to save database backup tar files in Cloud Storage bucket. You want to minimize the cost. Which GCP Cloud Storage class should you use?__[REVISAR]__
 
     * A. **Use Coldline Storage Class.**
@@ -150,6 +170,7 @@
     * A. Set up a second Google App Engine service, and then update a subset of clients to hit the new service.
     * B. Deploy the new application version temporarily, capture logs and then roll it back to the previous version.
     * C. **Deploy a new version of the application, and use traffic splitting to send a small percentage of traffic to it.**
+        > gcloud app services set-traffic [MY_SERVICE] --splits [MY_VERSION1]=[VERSION1_WEIGHT],[MY_VERSION2]=[VERSION2_WEIGHT] --split-by [IP_OR_COOKIE]
     * D. Create a second Google App Engine project with the new application code, and on board users gradually to the new application.
 
 25. You want to list all the compute instances in zones us-central1-b and europe-west1-d. Which of the commands below should you run to retrieve this information?
@@ -183,7 +204,7 @@
 30. Your company stores customer PII data in Cloud Storage buckets. A subset of this data is regularly imported into a BigQuery dataset to carry out analytics. You want to make sure the access to this bucket is strictly controlled. Your analytics team needs read access on the bucket so that they can import data in BigQuery. Your operations team needs read/write access to both the bucket and BigQuery dataset to add Customer PII data of new customers on an on going basis.Your Data Vigilance offcers need Administrator access to the Storage bucket and BigQuery dataset. You want to follow Google recommended practices. What should you do?__[REVISAR]__
 
     * A. At the Project level, add your Data Vigilance ofecers user accounts to the Owner role, add your operations team user accounts to the Editor role, and add your analytics team user accounts to the Viewer role.
-    * B. **Use the appropriate predefined IAM roles for each of the access levels needed for CloudStorage and BigQuery. Add your users to those roles for each of the services.**
+    * B. **Use the appropriate predefined IAM roles for each of the access levels needed for Cloud Storage and BigQuery. Add your users to those roles for each of the services.**
     * C. At the Organization level, add your Data Vigilance offcers user accounts to the Owner role, add your operations team user accounts to the Editor role, and add your analytics team user accounts to the Viewer role.
     * D. Create 3 custom IAM roles with appropriate permissions for the access levels needed for Cloud Storage and BigQuery. Add your users to the appropriate roles.
 

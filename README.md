@@ -43,6 +43,15 @@
 * 3.4.- Deploying and implementing data solutions
     - 3.4.1.- [Initializing data systems with products](https://github.com/genesiscastillo/Google-Cloud-Platform-Associate-Cloud-Engineer/blob/master/Section3/item4.md)
 
+        * [Cloud SQL](https://github.com/genesiscastillo/Google-Cloud-Platform-Associate-Cloud-Engineer/blob/master/Section3/item4.md)
+        * [Cloud Datastore](https://github.com/genesiscastillo/Google-Cloud-Platform-Associate-Cloud-Engineer/blob/master/Section3/item4.md)
+        * [Cloud Bigtable](https://github.com/genesiscastillo/Google-Cloud-Platform-Associate-Cloud-Engineer/blob/master/Section3/item4.md)
+        * [BigQuery](https://github.com/genesiscastillo/Google-Cloud-Platform-Associate-Cloud-Engineer/blob/master/Section3/item4.md)
+        * [Cloud Spanner](https://github.com/genesiscastillo/Google-Cloud-Platform-Associate-Cloud-Engineer/blob/master/Section3/item4.md)
+        * [Cloud Pub/Sub](https://github.com/genesiscastillo/Google-Cloud-Platform-Associate-Cloud-Engineer/blob/master/Section3/item4.md)
+        * [Cloud Dataproc](https://github.com/genesiscastillo/Google-Cloud-Platform-Associate-Cloud-Engineer/blob/master/Section3/item4.md)
+        * [Cloud Storage](https://github.com/genesiscastillo/Google-Cloud-Platform-Associate-Cloud-Engineer/blob/master/Section3/item4.md)
+
     - 3.4.2.- [Loading data](https://github.com/genesiscastillo/Google-Cloud-Platform-Associate-Cloud-Engineer/blob/master/Section3/item42.md)
 
 * 3.5.- Deploying and implementing networking resources
@@ -90,3 +99,5 @@
 - [gcloud_cheat_sheet.md](https://gist.github.com/pydevops/cffbd3c694d599c6ca18342d3625af97)
 - [How to ace the Google Cloud Associate Cloud Engineer Certification Exam!](https://medium.com/weareservian/ace-the-google-cloud-associate-cloud-engineer-certification-exam-8f3fdea87fb5)
 
+- [Best Practices for DDoS Protection and Mitigation
+on Google Cloud Platform](https://cloud.google.com/files/GCPDDoSprotection-04122016.pdf)
