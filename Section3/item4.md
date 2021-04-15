@@ -275,6 +275,50 @@ Any of the following commands:
 - update
 - version
 - wait
+
+#### BigQuery soporta 3 tipos de particionamientos
+
+* Ingestion time
+```bash
+bq query --destination_table mydataset.mytable --time_partitioning_type=DAY --requiere_partition_filter
+```
+
+* Any column that is of type DATE or TIMESTAMP
+```bash
+bq mk --table --schema a:STRING,tm:TIMESTAMP --time_partitioning_field tm
+```
+* Integer-typed column
+```bash
+bq mk --table --schema "customer_id:nteger, value:integer" --range_partitioning=customer_id,0,10,
+```
+
+El particionamineto puede mejorar el costo de la consulta y su rendimiento reduciendo la cantidad de data consultada
+
+SELECT 
+  field1 
+FROM 
+  mudataset.mytable1 
+WHERE 
+  _PARTITIONTIME > TIMESTAMP_SUB(TIMESTAMP('2016-04-15'), INTERNAL 5 DAY)
+(aislar el )
+
+##### particionamineto de tabals existentes en BigQuery
+
+- create table [schema-name].[tabla a crear]
+- partition by date([timestamp-column])
+- 
+
+##### Clustering BigQuery
+
+![Cluster1](bigquery1.png)
+
+![Cluster2](bigquery3.png)
+
+[Avoiding SQL anti-patterns](https://cloud.google.com/bigquery/docs/best-practices-performance-patterns)
+
+[Creating Custom cost control](https://cloud.google.com/bigquery/docs/custom-quotas)
+
+[Controlling costs in BigQuery](https://cloud.google.com/bigquery/docs/best-practices-costs)
 ---
 #### **Cloud Spanner**
 Cloud Spanner es un servicio de bases de datos relacionales esencial y completamente administrado que ofrece coherencia en las transacciones a escala global, esquemas, SQL (ANSI 2011 con extensiones) y replicación automática síncrona para brindar una alta disponibilidad.
