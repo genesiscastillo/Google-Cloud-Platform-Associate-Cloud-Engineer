@@ -16,9 +16,9 @@ gcloud components install kubectl
 
 gcloud config set project project-id
 
-gcloud config set compute/zone compute-zone
+gcloud config set compute/zone us-east1-b zone
 
-gcloud container clusters create cluster-name --num-nodes=1
+gcloud container clusters create my-cluster
 
 gcloud container clusters get-credentials cluster-name
 ```
@@ -26,9 +26,9 @@ gcloud container clusters get-credentials cluster-name
 ### 3.2.2.- Deploying a container application to Kubernetes Engine using pods
 
 ```bash
-kubectl create deployment hello-server --image=gcr.io/google-samples/hello-app:1.0
+kubectl create deployment hello-app --image=gcr.io/google-samples/hello-app:2.0
 
-kubectl expose deployment hello-server --type LoadBalancer \
+kubectl expose deployment hello-app --type LoadBalancer \
   --port 80 --target-port 8080
 
 kubectl get pods
